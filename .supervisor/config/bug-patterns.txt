@@ -1,0 +1,58 @@
+TypeError
+ReferenceError
+SyntaxError
+UnhandledPromiseRejection
+Cannot read properties
+Cannot destructure
+Failed to fetch
+NetworkError
+500
+401
+403
+404
+RLS
+JWT
+permission denied
+timeout
+ECONNREFUSED
+ENOTFOUND
+Build failed
+Test failed
+Error:
+FAIL
+failed
+panic
+exception
+edge function
+auth error
+database error
+migration failed
+Traceback
+NameError
+AttributeError
+ImportError
+ModuleNotFoundError
+KeyError
+IndexError
+ValueError
+ZeroDivisionError
+UnboundLocalError
+RecursionError
+AssertionError
+IndentationError
+is not a function
+is not defined
+Module not found
+failed to compile
+panic:
+fatal error:
+runtime error:
+undefined:
+cannot use
+type mismatch
+race detected
+error[E
+thread 'main' panicked
+the trait bound
+cannot borrow
+use of moved value

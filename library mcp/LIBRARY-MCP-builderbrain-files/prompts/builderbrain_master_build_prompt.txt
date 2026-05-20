@@ -1,0 +1,894 @@
+# BUILDERBRAIN MASTER BUILD PROMPT
+
+You are my senior AI systems architect, full-stack engineer, QA engineer, and product builder.
+
+I am giving you rough notes about an idea called BuilderBrain / World Builder Brain. Your job is to understand the messy idea, convert it into a real working software project, and build the first production-quality basic version.
+
+Do not treat this as brainstorming. Treat this as execution.
+
+You must ask all important questions at the beginning in one batch only. After that, do not keep stopping for small clarifications. If something is unclear, make the safest practical assumption, document the assumption, and continue.
+
+Your mission is to build the first working version completely.
+
+---
+
+# PRODUCT NAME
+
+BuilderBrain
+
+---
+
+# CORE IDEA
+
+BuilderBrain is a local AI Engineering Brain.
+
+Before any AI coding agent starts coding, debugging, planning, or refactoring, it should first:
+
+1. Search local knowledge.
+2. Understand user style.
+3. Select the right stack of books.
+4. Generate a combined context pack.
+5. Create a safe execution proposal with confidence/risk.
+6. Ask approval for risky actions.
+7. Execute only after context.
+8. Verify work.
+9. Save lessons for next time.
+
+Bad workflow:
+
+Task -> AI guesses -> AI codes -> bugs happen
+
+Good workflow:
+
+Task -> BuilderBrain detects domain -> selects knowledge books -> builds context pack -> creates proposal -> shows confidence/risk -> executes safely -> verifies -> saves lessons
+
+Later this system can become a big MCP-connected knowledge brain for Claude Code, OpenCode, Codex, Antigravity, ChatGPT, OpenHands, local models, and other AI agents.
+
+But for v0.1, build the basic verified core first.
+
+---
+
+# IMPORTANT SCOPE RULE
+
+Do NOT build the full giant system yet.
+
+Build v0.1 first:
+
+- local CLI
+- markdown knowledge files
+- context pack builder
+- proposal engine
+- self-learning memory
+- user-style memory
+- run logs
+- tests
+- clean README
+
+Do NOT add yet:
+
+- GitHub repo cloning
+- vector DB
+- Qdrant
+- Google Drive sync
+- dashboard
+- MCP server
+- LangGraph
+- multi-agent orchestration
+
+Those come later.
+
+---
+
+# REQUIRED COMMANDS
+
+Create a local CLI called `brain`.
+
+Required commands:
+
+1. brain context "<task>"
+2. brain propose "<task>"
+3. brain learn "<lesson>"
+4. brain status
+
+Optional if easy:
+
+5. brain init
+6. brain books
+7. brain log
+
+The CLI should be runnable with:
+
+npm run brain -- context "fix login bug"
+npm run brain -- propose "change auth flow"
+npm run brain -- learn "This fix worked"
+npm run brain -- status
+
+---
+
+# COMMAND: brain context
+
+Example:
+
+brain context "fix login redirect bug"
+
+It should:
+
+1. Read pocket rules.
+2. Read safe user style.
+3. Classify the task into domains.
+4. Select multiple relevant books, not just one.
+5. Build one combined context pack.
+6. Include relevant rules.
+7. Include best patterns.
+8. Include anti-patterns.
+9. Include previous lessons if relevant.
+10. Include testing checklist.
+11. Include recommended next plan.
+12. Save run log.
+
+Output structure:
+
+TASK:
+<task>
+
+DETECTED DOMAINS:
+- auth
+- routing
+- debugging
+- frontend
+- testing
+
+BOOK STACK USED:
+- pocket-rules/before-coding.md
+- pocket-rules/before-debugging.md
+- mini-book/debugging.md
+- mini-book/software-engineering.md
+- mini-book/testing.md
+- mini-book/security.md
+- user-style/do-not-ask-rules.md
+- self-learning/bug-patterns.md
+
+CONTEXT PACK:
+- key rules
+- relevant patterns
+- anti-patterns
+- known previous lessons
+- recommended approach
+- testing checklist
+
+RECOMMENDED NEXT ACTION:
+Create a small plan, inspect relevant files, make reversible changes, test the flow.
+
+---
+
+# COMMAND: brain propose
+
+Example:
+
+brain propose "change auth routing to fix redirect loop"
+
+It should produce an action proposal.
+
+Proposal must include:
+
+- task summary
+- detected domains
+- confidence level
+- risk level
+- approval required: yes/no
+- why approval is required or not
+- evidence used
+- planned actions
+- files likely to inspect/change
+- rollback plan
+- testing plan
+- final recommendation
+
+Approval is required for risky tasks involving:
+
+- auth
+- payments
+- database migrations
+- deletion
+- deployment
+- secrets
+- security
+- running unknown code
+- changing production config
+
+Example output:
+
+ACTION PROPOSAL
+
+Task:
+Change auth routing to fix redirect loop.
+
+Confidence:
+Medium / 72%
+
+Risk:
+High
+
+Approval Required:
+Yes
+
+Reason:
+Touches auth and protected route behavior.
+
+Evidence:
+- before-debugging.md
+- debugging.md
+- security.md
+- previous bug-patterns.md
+
+Plan:
+1. Inspect current auth flow.
+2. Find duplicate redirects.
+3. Add session hydration guard.
+4. Make smallest reversible fix.
+5. Test login/logout/OAuth flow.
+
+Rollback:
+Create backup branch or commit before modifying files.
+
+Testing:
+- email login
+- OAuth login
+- logout
+- protected page refresh
+- invalid session
+
+---
+
+# COMMAND: brain learn
+
+Example:
+
+brain learn "Auth loop fixed by centralizing route guard and waiting for session hydration."
+
+It should save lessons into self-learning files.
+
+It should update:
+
+- self-learning/solved-problems.md
+- self-learning/improvement-log.md
+
+If the lesson contains words like failed, did not work, mistake, broken, wrong, then also update:
+
+- self-learning/failed-attempts.md
+
+If the lesson contains bug/fix/error/issue, also update:
+
+- self-learning/bug-patterns.md
+
+Each lesson should include:
+
+- timestamp
+- lesson text
+- detected tags
+- where it was saved
+
+---
+
+# COMMAND: brain status
+
+It should show:
+
+- whether brain-data folders exist
+- number of pocket-rule files
+- number of mini-book files
+- number of self-learning files
+- number of user-style files
+- number of run logs
+- whether project looks healthy
+- missing recommended files
+
+---
+
+# REQUIRED FOLDER STRUCTURE
+
+Create:
+
+builderbrain/
+  README.md
+  package.json
+  tsconfig.json
+  vitest.config.ts
+
+  brain-data/
+    pocket-rules/
+      before-coding.md
+      before-debugging.md
+      approval-rules.md
+      memory-rules.md
+
+    mini-book/
+      software-engineering.md
+      debugging.md
+      testing.md
+      ai-agents.md
+      security.md
+      product-building.md
+
+    self-learning/
+      solved-problems.md
+      failed-attempts.md
+      bug-patterns.md
+      architecture-decisions.md
+      reusable-fixes.md
+      improvement-log.md
+
+    user-style/
+      communication-style.md
+      decision-style.md
+      do-not-ask-rules.md
+      safe-memory-only.md
+
+    runs/
+      .gitkeep
+
+  src/
+    cli/
+      index.ts
+
+    core/
+      classifier.ts
+      bookRouter.ts
+      contextPack.ts
+      proposalEngine.ts
+      memoryWriter.ts
+      logger.ts
+      fileSystem.ts
+      status.ts
+
+    types/
+      index.ts
+
+  tests/
+    classifier.test.ts
+    bookRouter.test.ts
+    proposalEngine.test.ts
+    contextPack.test.ts
+
+---
+
+# TECHNOLOGY
+
+Use:
+
+- TypeScript
+- Node.js
+- Vitest
+- local markdown files
+- JSON run logs
+- no external database for v0.1
+
+Use simple, reliable dependencies only.
+
+Prefer minimal dependencies.
+
+Add package scripts:
+
+npm run build
+npm run test
+npm run dev
+npm run brain
+
+---
+
+# DOMAIN CLASSIFIER
+
+Create a simple keyword-based classifier first.
+
+It should detect domains like:
+
+- auth
+- database
+- payments
+- security
+- testing
+- debugging
+- frontend
+- backend
+- ai-agents
+- product
+- deployment
+- files
+- browser-automation
+- documentation
+
+Example mappings:
+
+auth:
+login, logout, oauth, session, redirect, protected route, supabase auth, nextauth
+
+database:
+sql, postgres, supabase, migration, schema, rls, table, query
+
+payments:
+stripe, billing, subscription, checkout, webhook, invoice, plan
+
+security:
+secret, key, token, permission, vulnerability, auth, exploit, xss, csrf
+
+testing:
+test, verify, playwright, vitest, jest, cypress, qa
+
+debugging:
+bug, error, crash, broken, loop, stuck, failing, timeout
+
+ai-agents:
+agent, mcp, tool, memory, rag, vector, langchain, openhands
+
+frontend:
+react, vite, ui, component, page, css, tailwind
+
+backend:
+api, server, edge function, endpoint, worker, queue
+
+product:
+feature, user flow, pricing, onboarding, dashboard
+
+deployment:
+cloudflare, vercel, netlify, docker, deploy, production
+
+files:
+upload, pdf, docx, storage, parse, document
+
+browser-automation:
+extension, chrome, playwright, puppeteer, browser, scraping
+
+documentation:
+readme, docs, guide, instructions
+
+---
+
+# BOOK ROUTER
+
+The book router must select a stack of books.
+
+Always include:
+
+- pocket-rules/before-coding.md
+- user-style/do-not-ask-rules.md
+- user-style/safe-memory-only.md
+
+If debugging domain detected, include:
+
+- pocket-rules/before-debugging.md
+- mini-book/debugging.md
+- self-learning/bug-patterns.md
+- self-learning/failed-attempts.md
+
+If testing detected, include:
+
+- mini-book/testing.md
+
+If security/auth/payments/database/deployment detected, include:
+
+- mini-book/security.md
+- pocket-rules/approval-rules.md
+
+If ai-agents detected, include:
+
+- mini-book/ai-agents.md
+- pocket-rules/memory-rules.md
+
+If product detected, include:
+
+- mini-book/product-building.md
+
+Always include:
+
+- self-learning/solved-problems.md
+- self-learning/improvement-log.md
+
+For v0.1, reading whole small markdown files is acceptable. Later we will add indexing.
+
+---
+
+# CONTEXT PACK BUILDER
+
+It should return a clean combined context pack.
+
+It should not simply dump raw files with no structure.
+
+It should produce sections:
+
+1. Task
+2. Detected domains
+3. Book stack used
+4. Key rules
+5. Relevant knowledge
+6. Known lessons
+7. Anti-patterns
+8. Recommended plan
+9. Testing checklist
+10. Approval warning if risky
+
+Make it readable.
+
+---
+
+# PROPOSAL ENGINE
+
+The proposal engine should calculate:
+
+Risk level:
+
+- Low
+- Medium
+- High
+- Critical
+
+Confidence level:
+
+- Low
+- Medium
+- High
+- numeric percentage if easy
+
+Simple scoring is fine.
+
+Confidence increases when:
+
+- domains detected clearly
+- multiple books found
+- previous lessons exist
+- task is specific
+
+Confidence decreases when:
+
+- task is vague
+- risky domains involved
+- no relevant books found
+
+Risk increases when task involves:
+
+- auth
+- payments
+- database
+- security
+- deployment
+- deletion
+- secrets
+- production
+
+Approval required if risk is High or Critical.
+
+---
+
+# LOGGING
+
+Every command should create a run log in:
+
+brain-data/runs/
+
+Use JSON logs.
+
+Example filename:
+
+2026-05-20T12-30-00-context.json
+
+Log should include:
+
+- command
+- task
+- timestamp
+- detected domains
+- books used
+- risk/confidence if relevant
+- output summary
+
+---
+
+# SELF-LEARNING MEMORY
+
+Maintain this folder:
+
+brain-data/self-learning/
+
+Files:
+
+- solved-problems.md
+- failed-attempts.md
+- bug-patterns.md
+- architecture-decisions.md
+- reusable-fixes.md
+- improvement-log.md
+
+The AI should learn from itself.
+
+For now, `brain learn` is enough.
+
+---
+
+# USER STYLE MEMORY
+
+Maintain this folder:
+
+brain-data/user-style/
+
+Files:
+
+- communication-style.md
+- decision-style.md
+- do-not-ask-rules.md
+- safe-memory-only.md
+
+Store only safe working preferences.
+
+Seed these preferences:
+
+- User prefers direct practical answers.
+- User wants AI to do 80% of the work and user to do 20%.
+- User dislikes too many clarifying questions.
+- User wants questions asked once at the beginning, not repeatedly.
+- User prefers agents to infer safe defaults and continue.
+- User likes copy-paste prompts and executable steps.
+- User wants global reusable systems, not narrow one-project-only thinking.
+- User wants safety warnings for risky actions.
+- User wants approval gates for risky execution.
+- User prefers senior engineer style: direct, practical, sometimes strict.
+- User wants evidence and verification before “done.”
+
+Do not store sensitive personal information.
+
+---
+
+# POCKET RULES CONTENT
+
+Seed pocket rules with strong content.
+
+before-coding.md:
+
+- Do not code before understanding the task.
+- Retrieve context first.
+- Prefer small reversible changes.
+- Do not guess when knowledge exists.
+- Create a plan before edits.
+- Verify before claiming done.
+
+before-debugging.md:
+
+- Reproduce or understand the failure.
+- Identify root cause.
+- Do not keep guessing after two failed attempts.
+- Search previous bug patterns.
+- Make the smallest fix.
+- Test the exact failing flow.
+
+approval-rules.md:
+
+Approval required for:
+
+- auth
+- payments
+- database migrations
+- production deployment
+- deleting data/files
+- secrets/API keys
+- security permissions
+- running unknown repo code
+
+memory-rules.md:
+
+- Save solved lessons.
+- Save failed attempts.
+- Save reusable fixes.
+- Update user style only with safe preferences.
+- Do not store sensitive personal data unless explicitly asked.
+
+---
+
+# MINI BOOK CONTENT
+
+Create useful starter content.
+
+software-engineering.md:
+
+- modular design
+- simple first version
+- avoid overengineering
+- evidence-based changes
+- small commits
+- readable code
+
+debugging.md:
+
+- reproduce
+- isolate
+- inspect logs
+- compare expected vs actual
+- root cause
+- fix smallest thing
+- verify
+
+testing.md:
+
+- unit tests
+- integration tests
+- smoke tests
+- CLI tests
+- do not claim success without tests
+- include edge cases
+
+ai-agents.md:
+
+- retrieve context before acting
+- use tools safely
+- approval gates
+- memory updates
+- self-learning
+- avoid repeated questions
+
+security.md:
+
+- never expose secrets
+- avoid running unknown code
+- validate inputs
+- least privilege
+- approval before risky changes
+
+product-building.md:
+
+- start with v0.1
+- verify core loop
+- build boring working version
+- expand after proof
+- user value first
+
+---
+
+# TESTING REQUIREMENTS
+
+Add tests for:
+
+1. Classifier detects domains.
+2. Book router selects correct book stack.
+3. Proposal engine marks risky tasks as approval required.
+4. Context pack includes multiple books.
+5. Learn command writes to self-learning files.
+
+Use Vitest.
+
+Do not claim done until:
+
+npm run test
+
+passes.
+
+Also ensure:
+
+npm run build
+
+passes.
+
+---
+
+# README REQUIREMENTS
+
+README must include:
+
+- What BuilderBrain is
+- Why it exists
+- v0.1 scope
+- install steps
+- commands
+- example usage
+- folder structure
+- design philosophy
+- future roadmap
+
+Roadmap:
+
+v0.1:
+local CLI, markdown brain, context packs, proposal, learning
+
+v0.2:
+SQLite index, better retrieval, tags, search
+
+v0.3:
+MCP server
+
+v0.4:
+Big Bible + Google Drive archive
+
+v0.5:
+GitHub repo hunter + repo scoring + Repomix
+
+v1.0:
+Universal BuilderBrain with CLI + MCP + API + approval engine + repo research + self-learning
+
+---
+
+# HOW YOU SHOULD WORK
+
+1. First inspect current folder.
+2. Ask all critical questions at once if absolutely needed.
+3. If not blocked, proceed with sane defaults.
+4. Create the project files.
+5. Implement CLI.
+6. Implement core modules.
+7. Seed markdown knowledge.
+8. Add tests.
+9. Run tests.
+10. Fix failures.
+11. Run build.
+12. Update README.
+13. Give final report.
+
+Do not stop after creating skeleton only.
+Do not leave TODO-only code.
+Do not say “you can implement later” for v0.1 requirements.
+Build the working v0.1.
+
+---
+
+# QUESTIONS POLICY
+
+Ask questions only once at the beginning.
+
+Ask only if truly required.
+
+If questions are not answered, proceed with these defaults:
+
+- TypeScript + Node.js
+- CLI-first
+- markdown storage
+- local folder brain-data
+- no database yet
+- no MCP yet
+- no GitHub cloning yet
+- no dashboard yet
+- Vitest for tests
+- simple keyword classifier
+- simple risk/confidence engine
+
+---
+
+# COMPLETION CRITERIA
+
+The project is complete only when:
+
+- folder structure exists
+- seed knowledge files exist
+- CLI commands work
+- brain context works
+- brain propose works
+- brain learn works
+- brain status works
+- run logs are created
+- tests exist
+- tests pass
+- build passes
+- README is clear
+- final report explains how to use it
+
+---
+
+# FINAL REPORT FORMAT
+
+When done, report:
+
+1. What was built
+2. Commands available
+3. How to run
+4. Tests/build status
+5. Important files created
+6. Known limitations
+7. Next recommended phase
+
+---
+
+# IMPORTANT FINAL INSTRUCTION
+
+This is not just a notes project.
+
+This is the foundation of my universal AI builder system.
+
+Build it cleanly, practically, and in a way that future AI agents can extend.
+
+The first version should be simple, but real.
+
+Boring and working beats advanced and broken.

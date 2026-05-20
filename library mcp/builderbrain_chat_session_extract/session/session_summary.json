@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-05-20T16:51:19",
+  "project": "BuilderBrain / LIBRARY-MCP",
+  "repo": "mohitnigahcanada-collab/LIBRARY-MCP",
+  "v1_scope": [
+    "CLI",
+    "local API",
+    "dashboard",
+    "MCP skeleton",
+    "markdown knowledge library",
+    "context pack builder",
+    "proposal/confidence/risk engine",
+    "self-learning memory",
+    "user-style memory",
+    "run logs",
+    "tests and verification"
+  ],
+  "v1_not_in_scope": [
+    "GitHub repo cloning",
+    "vector DB",
+    "Qdrant",
+    "Google Drive sync",
+    "Big Bible automation",
+    "cloud deployment"
+  ],
+  "main_files": [
+    "docs/BUILDERBRAIN_V1_DESIGN_PLAN.md",
+    "docs/BUILDERBRAIN_CORE_PRINCIPLES_RULEBOOK.md",
+    "prompts/BUILDERBRAIN_V1_MASTER_BUILD_PROMPT.md"
+  ],
+  "github_write_status": "Read worked; write failed with 403 Resource not accessible by integration."
+}

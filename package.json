@@ -1,0 +1,30 @@
+{
+  "name": "nexus-ai",
+  "version": "1.0.0",
+  "description": "One command. Every model. Never overpay again.",
+  "module": "src/index.ts",
+  "type": "module",
+  "bin": {
+    "nexusai": "./src/index.ts"
+  },
+  "scripts": {
+    "build:css": "bunx @tailwindcss/cli -i src/dashboard/styles.css -o src/dashboard/compiled.css --minify",
+    "start": "bun run build:css && bun run src/index.ts",
+    "dev": "bun run build:css && bun --hot src/index.ts",
+    "build": "bun run build:css && bun build src/index.ts --target=bun --outdir=dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.12.21",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5.9.3"
+  }
+}
