@@ -12,6 +12,7 @@ import { runBenchmark, getLatestBenchmarks } from "./benchmark";
 import { getSetting, setSetting } from "./db";
 import { getAllVariants } from "./variants";
 import { healthMonitor } from "./health-monitor";
+import { exec } from "bun";
 // import { loadKeysFromKeyring } from "./keyring-loader";
 
 // Load API keys from GNOME Keyring (secure storage) - DISABLED for benchmarking
@@ -292,6 +293,78 @@ app.get("/health", (c) => {
 
 app.get("/api/health/detailed", (c) => {
   return c.json(healthMonitor.getHealthReport());
+});
+
+// ─── Service Management ───────────────────────────────────────────
+
+// Get recent logs (last 100 lines from both files)
+app.get("/api/logs", async (c) => {
+  const lines = parseInt(c.req.query("lines") || "100");
+  const logFiles = [
+    "/home/mohit/nexus-ai-v2/logs/nexus.log",
+    "/home/mohit/nexus-ai-v2/logs/nexus-error.log",
+  ];
+
+  const entries: { source: string; line: string }[] = [];
+
+  for (const logFile of logFiles) {
+    try {
+      const file = Bun.file(logFile);
+      if (await file.exists()) {
+        const text = await file.text();
+        const allLines = text.split("\n").filter(l => l.trim());
+        const recentLines = allLines.slice(-lines);
+        for (const line of recentLines) {
+          entries.push({
+            source: logFile.endsWith("error.log") ? "error" : "info",
+            line,
+          });
+        }
+      }
+    } catch (err) {
+      entries.push({ source: "system", line: `[Error reading ${logFile}]: ${err}` });
+    }
+  }
+
+  // Sort by recency (approximate since we don't have timestamps parsed)
+  return c.json({ entries: entries.reverse() });
+});
+
+// Restart service (admin only - check for secret header)
+app.post("/api/restart", async (c) => {
+  const authHeader = c.req.header("X-Admin-Token");
+  const expectedToken = process.env.NEXUS_ADMIN_TOKEN;
+
+  if (!expectedToken || authHeader !== expectedToken) {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
+
+  try {
+    // Emit restart event to WebSocket clients
+    events.emit({
+      type: "restart",
+      timestamp: Date.now(),
+      data: { reason: "manual_restart", initiatedBy: "admin" },
+    });
+
+    // Give time for the response to be sent
+    setTimeout(async () => {
+      try {
+        // Use systemctl restart
+        const result = await exec(["systemctl", "restart", "nexus-backend"], {
+          stdout: "pipe",
+          stderr: "pipe",
+        });
+        console.log("Restart command output:", result.stdout, result.stderr);
+      } catch (err: any) {
+        console.error("Restart failed:", err);
+      }
+    }, 500);
+
+    return c.json({ ok: true, message: "Restart initiated" });
+  } catch (err: any) {
+    return c.json({ error: err.message }, 500);
+  }
 });
 
 // ─── Info ────────────────────────────────────────────────────────

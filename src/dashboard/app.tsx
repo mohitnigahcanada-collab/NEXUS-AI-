@@ -5,11 +5,12 @@ import { DashboardPage } from "./pages/Dashboard";
 import { AnalyticsPage } from "./pages/Analytics";
 import { KeysPage } from "./pages/Keys";
 import { SettingsPage } from "./pages/Settings";
+import { LogsPage } from "./pages/Logs";
 import { useWebSocket } from "./hooks/useWebSocket";
 import { useStats } from "./hooks/useStats";
 import "./compiled.css";
 
-type Page = "dashboard" | "analytics" | "keys" | "settings";
+type Page = "dashboard" | "analytics" | "keys" | "settings" | "logs";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>("dashboard");
@@ -24,6 +25,8 @@ function App() {
         return <AnalyticsPage stats={stats} />;
       case "keys":
         return <KeysPage />;
+      case "logs":
+        return <LogsPage />;
       case "settings":
         return <SettingsPage onSave={refresh} />;
     }

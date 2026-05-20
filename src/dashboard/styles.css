@@ -185,3 +185,87 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 @media (max-width: 920px) { .app-shell { grid-template-columns: 1fr; } .sidebar-shell { position: static; width: 100%; height: auto; border-right: 0; border-bottom: 1px solid var(--border); } .sidebar-nav { flex-direction: row; overflow-x: auto; } .sidebar-link { flex: 0 0 auto; } .sidebar-status { display: none; } .metrics-grid, .models-grid, .settings-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 640px) { .app-main { padding: 14px; } .dashboard-hero { padding: 22px; } .hero-layout, .metrics-grid, .models-grid, .settings-grid, .summary-grid.four-columns, .info-grid { grid-template-columns: 1fr; } .copy-row { grid-template-columns: 1fr; } .router-row { grid-template-columns: 1fr; } .chart-header, .section-heading, .card-heading, .key-row, .form-row { flex-direction: column; align-items: stretch; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* Restart Button */
+.restart-button-main:hover { background: rgba(239, 68, 68, 0.15) !important; border-color: rgba(239, 68, 68, 0.5) !important; }
+.restart-button-main:active { transform: translateY(1px); }
+
+.restart-confirm {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 12px;
+}
+.restart-confirm p { color: var(--danger); font-size: 13px; font-weight: 800; margin-bottom: 10px; }
+.restart-actions { display: flex; gap: 10px; justify-content: center; }
+.restart-actions button {
+  min-height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.restart-actions .cancel-btn { background: #fff; color: #64748b; border: 1px solid #d8e1ee; }
+.restart-actions .cancel-btn:hover { background: #f8fafc; }
+.restart-actions .restart-btn { background: var(--danger); color: #fff; }
+.restart-actions .restart-btn:hover { background: #b91c1c; }
+.restart-actions .restart-btn:disabled { opacity: .7; cursor: not-allowed; }
+
+/* Logs Page */
+.logs-page { display: flex; flex-direction: column; gap: 16px; }
+.logs-page .page-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+.logs-page .page-header h1 { font-size: clamp(28px,3.5vw,40px); letter-spacing: -.05em; }
+.logs-page .header-actions { display: flex; gap: 12px; align-items: center; }
+.logs-page .filter-group { display: flex; background: var(--panel-soft); border-radius: 10px; padding: 4px; gap: 4px; }
+.logs-page .filter-group button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+.logs-page .filter-group button.active { background: #fff; color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.logs-page .autoscroll-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+.logs-page .autoscroll-toggle input { width: 16px; height: 16px; accent-color: var(--primary); }
+
+.log-viewer {
+  flex: 1;
+  min-height: 400px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid #1e293b;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.log-viewer::-webkit-scrollbar { width: 10px; }
+.log-viewer::-webkit-scrollbar-track { background: #1e293b; border-radius: 5px; }
+.log-viewer::-webkit-scrollbar-thumb { background: #475569; border-radius: 5px; }
+.log-viewer::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+.log-empty { text-align: center; color: #64748b; padding: 40px; }
+
+.log-content { margin: 0; }
+.log-line { margin: 0; padding: 2px 0; white-space: pre-wrap; word-break: break-all; }
+.log-info { color: #cbd5e1; }
+.log-error { color: #fca5a5; background: rgba(239, 68, 68, 0.08); }
+.log-system { color: #86efac; font-style: italic; }

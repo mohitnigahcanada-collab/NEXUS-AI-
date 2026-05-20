@@ -1,7 +1,7 @@
 // Nexus AI - Event Bus (typed pub/sub for WebSocket + internal)
 
 export interface NexusEvent {
-  type: "request" | "error" | "provider_down" | "provider_up" | "budget_warning";
+  type: "request" | "error" | "provider_down" | "provider_up" | "budget_warning" | "log" | "restart";
   timestamp: number;
   data: Record<string, unknown>;
 }
