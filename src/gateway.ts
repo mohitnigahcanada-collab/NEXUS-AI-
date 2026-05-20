@@ -1,16 +1,11 @@
-// Nexus AI - BULLETPROOF Gateway v2.0
-// Industry-grade: Netflix Hystrix + AWS SDK + Stripe API patterns
-// GOAL: 100% uptime, 0 user-facing errors
+// Nexus AI - Core Gateway (OpenAI-compatible proxy with smart routing)
 
-import { getProvider, getAllProviders, type ProviderConfig } from "./providers";
-import { resolveVariant, isVariant, getVariantFallbackChain } from "./variants";
-import { isProviderHealthy, recordFailure, recordSuccess } from "./circuit-breaker-v2";
-import { retryWithBackoff, getRateLimitQueue } from "./retry-system";
+import { getProvider, getAllProviders, OPENAI_COST_PER_1K, type ProviderConfig } from "./providers";
+import { autoRoute } from "./router";
+import { isProviderHealthy, recordFailure, recordSuccess } from "./circuit-breaker";
 import { stats } from "./stats";
 import { getSetting } from "./db";
-
-const OPENAI_COST_PER_1K = 0.005;
-const ULTIMATE_FALLBACK_MODEL = "nexus-chat-instant"; // Llama 3.1-8B on GROQ (fastest, most reliable)
+import { events } from "./events";
 
 interface ChatRequest {
   model: string;
@@ -21,130 +16,77 @@ interface ChatRequest {
   [key: string]: unknown;
 }
 
-interface ProviderAttempt {
-  providerName: string;
-  provider: ProviderConfig;
-  reason?: string;
+// ─── Streaming Support ───────────────────────────────────────────
+
+function getApiKey(provider: ProviderConfig): string {
+  return process.env[provider.keyEnv] || "";
 }
 
-/**
- * Get API key with validation
- */
-function getApiKey(provider: ProviderConfig): string | null {
-  const key = process.env[provider.keyEnv];
-  if (!key) {
-    console.warn(`[Gateway] No API key for ${provider.keyEnv}`);
-    return null;
-  }
-  return key;
+function getFallbackChain(originalModel: string): string[] {
+  const allModels = ["nexus-flash", "nexus-air", "nexus-deep", "nexus-core", "nexus-pro", "nexus-code", "nexus-lite"];
+  return allModels.filter((m) => m !== originalModel);
 }
 
-/**
- * Build intelligent fallback chain with priority sorting
- */
-function getFallbackChain(originalModel: string, requestedVariant: string | null): ProviderAttempt[] {
-  const attempts: ProviderAttempt[] = [];
-  const seenProviders = new Set<string>();
-
-  // Helper to add provider if not seen
-  const addProvider = (name: string, reason: string) => {
-    if (seenProviders.has(name)) return;
-    const provider = getProvider(name);
-    if (!provider) return;
-    
-    seenProviders.add(name);
-    attempts.push({ providerName: name, provider, reason });
-  };
-
-  // 1. Add primary model
-  addProvider(originalModel, "Primary choice");
-
-  // 2. Add variant-based fallbacks (if variant was requested)
-  if (requestedVariant) {
-    const variantChain = getVariantFallbackChain(requestedVariant);
-    variantChain.forEach((name, idx) => {
-      addProvider(name, `Variant fallback #${idx + 1}`);
-    });
-  }
-
-  // 3. Add same-tier alternatives (sorted by priority)
-  const primaryProvider = getProvider(originalModel);
-  if (primaryProvider) {
-    const sameTier = getAllProviders()
-      .filter((p) => p.tier === primaryProvider.tier && p.name !== originalModel)
-      .sort((a, b) => (a.priority || 99) - (b.priority || 99));
-
-    sameTier.forEach((p, idx) => {
-      addProvider(p.name, `Same tier fallback #${idx + 1}`);
-    });
-  }
-
-  // 4. Add cross-tier fallbacks (if desperate)
-  const allByPriority = getAllProviders()
-    .filter((p) => !seenProviders.has(p.name))
-    .sort((a, b) => (a.priority || 99) - (b.priority || 99));
-
-  allByPriority.forEach((p, idx) => {
-    addProvider(p.name, `Cross-tier fallback #${idx + 1}`);
-  });
-
-  // 5. ULTIMATE FALLBACK: Always ensure we have the most reliable model last
-  addProvider(ULTIMATE_FALLBACK_MODEL, "🚨 Ultimate fallback (guaranteed)");
-
-  return attempts;
-}
-
-/**
- * Call provider with retry logic and rate limit handling
- */
-async function callProviderWithRetry(
-  providerName: string,
+function buildProviderRequest(
   provider: ProviderConfig,
   body: ChatRequest,
-  isStream: boolean
-): Promise<{ response: Response; latency: number }> {
+  stream: boolean
+): { url: string; headers: Record<string, string>; body: string } {
   const key = getApiKey(provider);
-  if (!key) {
-    throw new Error(`No API key for ${provider.keyEnv}`);
-  }
+  if (!key) throw new Error(`No API key for ${provider.keyEnv}`);
 
   const url = `${provider.baseUrl}/chat/completions`;
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${key}`,
   };
+
+  const finalUrl = url;
+  headers["Authorization"] = `Bearer ${key}`;
 
   const requestBody = {
     ...body,
     model: provider.model,
-    stream: isStream,
-    ...(isStream && { stream_options: { include_usage: true } }),
+    stream,
+    ...(stream && { stream_options: { include_usage: true } }),
   };
 
-  // Use rate limit queue if provider has been rate-limited before
-  const queue = getRateLimitQueue(providerName);
-
-  const result = await retryWithBackoff(
-    async () => { ... },
-    {
-      maxRetries: 1, // ⚡ Reduced from 3 - faster fallback cycling
-      baseDelayMs: 500, // ⚡ Reduced from 1000ms
-      maxDelayMs: 4000, // ⚡ Reduced from 8000ms
-      timeoutMs: 15000, // ⚡ Reduced from 30000ms - faster timeout
-      retryableStatuses: [408, 429, 500, 502, 503, 504],
-    }
-  );
-
-  if (!result.success) {
-    throw new Error(result.error || "Unknown error");
-  }
-
-  return result.data!;
+  return { url: finalUrl, headers, body: JSON.stringify(requestBody) };
 }
 
-/**
- * Transform SSE stream: rewrite model name, capture usage
- */
+async function callProvider(
+  provider: ProviderConfig,
+  body: ChatRequest
+): Promise<{ response: Response; latency: number }> {
+  const { url, headers, body: reqBody } = buildProviderRequest(provider, body, false);
+
+  const start = Date.now();
+  const response = await fetch(url, {
+    method: "POST",
+    headers,
+    body: reqBody,
+  });
+  const latency = Date.now() - start;
+
+  return { response, latency };
+}
+
+async function callProviderStream(
+  provider: ProviderConfig,
+  body: ChatRequest
+): Promise<{ response: Response; startTime: number }> {
+  const { url, headers, body: reqBody } = buildProviderRequest(provider, body, true);
+
+  const startTime = Date.now();
+  const response = await fetch(url, {
+    method: "POST",
+    headers,
+    body: reqBody,
+  });
+
+  return { response, startTime };
+}
+
+// Transform SSE stream: rewrite model name, capture usage
 function createStreamTransformer(brandedModel: string, provider: ProviderConfig, startTime: number) {
   let buffer = "";
   let totalTokens = 0;
@@ -156,123 +98,138 @@ function createStreamTransformer(brandedModel: string, provider: ProviderConfig,
       buffer += decoder.decode(chunk, { stream: true });
 
       const lines = buffer.split("\n");
+      // Keep the last potentially incomplete line in buffer
       buffer = lines.pop() || "";
 
       for (const line of lines) {
-        if (!line.trim() || line.startsWith(":")) {
-          controller.enqueue(encoder.encode(line + "\n"));
-          continue;
-        }
-
         if (line.startsWith("data: ")) {
-          const data = line.slice(6);
+          const data = line.slice(6).trim();
+
           if (data === "[DONE]") {
-            controller.enqueue(encoder.encode(line + "\n"));
+            // Record stats before sending DONE
+            const latency = Date.now() - startTime;
+            const cost = (totalTokens / 1000) * provider.costPer1kTokens;
+            stats.record({
+              model: brandedModel,
+              tokens: totalTokens,
+              cost,
+              latency,
+              timestamp: Date.now(),
+              success: true,
+            });
+            // Publish live request event for streaming completion
+            events.publish({
+              type: "request",
+              timestamp: Date.now(),
+              data: {
+                model: brandedModel,
+                status: "stream completed",
+                latency,
+                tokens: totalTokens,
+                cost,
+                success: true,
+              },
+            });
+            controller.enqueue(encoder.encode("data: [DONE]\n\n"));
             continue;
           }
 
           try {
-            const json = JSON.parse(data);
-            json.model = brandedModel; // Rewrite model name
-
-            // Capture usage from final chunk
-            if (json.usage) {
-              totalTokens = json.usage.total_tokens || 0;
+            const parsed = JSON.parse(data);
+            // Rewrite model to branded name
+            parsed.model = brandedModel;
+            // Capture usage if present (final chunk from some providers)
+            if (parsed.usage) {
+              totalTokens = parsed.usage.total_tokens || parsed.usage.prompt_tokens + parsed.usage.completion_tokens || 0;
             }
-
-            controller.enqueue(encoder.encode(`data: ${JSON.stringify(json)}\n`));
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify(parsed)}\n\n`));
           } catch {
-            controller.enqueue(encoder.encode(line + "\n"));
+            // Pass through unparseable lines as-is
+            controller.enqueue(encoder.encode(`${line}\n`));
           }
+        } else if (line.trim() === "") {
+          // Empty lines are part of SSE protocol, skip
+        } else {
+          // Non-data lines (comments, etc)
+          controller.enqueue(encoder.encode(`${line}\n`));
         }
       }
     },
 
     flush(controller) {
+      // Handle any remaining buffer
       if (buffer.trim()) {
-        controller.enqueue(new TextEncoder().encode(buffer + "\n"));
+        const encoder = new TextEncoder();
+        controller.enqueue(encoder.encode(`${buffer}\n`));
       }
-
-      // Record stats
-      const latency = Date.now() - startTime;
-      const cost = (totalTokens / 1000) * provider.costPer1kTokens;
-      stats.record({
-        model: brandedModel,
-        tokens: totalTokens,
-        cost,
-        latency,
-        timestamp: Date.now(),
-        success: true,
-      });
+      // If we never got usage data, record with estimate
+      if (totalTokens === 0) {
+        const latency = Date.now() - startTime;
+        stats.record({
+          model: brandedModel,
+          tokens: 0,
+          cost: 0,
+          latency,
+          timestamp: Date.now(),
+          success: true,
+        });
+      }
     },
   });
 }
 
-/**
- * BULLETPROOF chat completion handler
- * Guarantees: Never returns 503, always finds a working model
- */
 export async function handleChatCompletion(body: ChatRequest): Promise<Response> {
-  const startTime = Date.now();
+  // Budget check
+  if (!stats.canSpend()) {
+    return new Response(
+      JSON.stringify({
+        error: { message: "Daily budget exceeded. Reset tomorrow or increase budget.", type: "budget_exceeded" },
+      }),
+      { status: 429, headers: { "Content-Type": "application/json" } }
+    );
+  }
 
-  // 1. Resolve model name (variant → actual model)
+  // Route: auto or manual
   let modelName = body.model;
-  let requestedVariant: string | null = null;
-
-  if (isVariant(modelName)) {
-    requestedVariant = modelName;
-    const resolved = resolveVariant(modelName, body.messages);
-
-    if (!resolved) {
-      // Variant has no models, use ultimate fallback
-      console.warn(`[Gateway] Variant '${modelName}' has no models, using ultimate fallback`);
-      modelName = ULTIMATE_FALLBACK_MODEL;
-    } else {
-      modelName = resolved;
-    }
-  } else if (!getProvider(modelName)) {
-    // Unknown model, use ultimate fallback
-    console.warn(`[Gateway] Unknown model '${modelName}', using ultimate fallback`);
-    modelName = ULTIMATE_FALLBACK_MODEL;
+  if (modelName === "auto" || !getProvider(modelName)) {
+    const modelOverride = getSetting("model_override", "auto");
+    modelName = getProvider(modelOverride) ? modelOverride : autoRoute(body.messages);
   }
 
   const isStream = body.stream === true;
 
-  // 2. Build intelligent fallback chain
-  const attempts = getFallbackChain(modelName, requestedVariant);
-  console.log(`[Gateway] Built fallback chain with ${attempts.length} providers`);
+  // Try primary provider + fallbacks
+  const attempts = [modelName, ...getFallbackChain(modelName)];
 
-  // 3. Try each provider in the fallback chain
-  const errors: Array<{ provider: string; error: string }> = [];
-
-  for (const { providerName, provider, reason } of attempts) {
-    // Skip if circuit breaker is open
-    if (!isProviderHealthy(providerName)) {
-      console.log(`[Gateway] Skipping ${providerName} (circuit breaker open)`);
-      continue;
-    }
-
-    // Skip if no API key
-    if (!getApiKey(provider)) {
-      console.log(`[Gateway] Skipping ${providerName} (no API key)`);
-      continue;
-    }
+  for (const attempt of attempts) {
+    const provider = getProvider(attempt);
+    if (!provider) continue;
+    if (!isProviderHealthy(attempt)) continue;
+    if (!getApiKey(provider)) continue;
 
     try {
-      console.log(`[Gateway] Trying ${providerName} (${reason})`);
-
+      // ─── Streaming Path ─────────────────────────────────────
       if (isStream) {
-        // ─── Streaming Path ─────────────────────────────────────
-        const { response, latency } = await callProviderWithRetry(providerName, provider, body, true);
+        const { response, startTime } = await callProviderStream(provider, body);
 
-        if (!response.body) {
-          throw new Error("No response body");
+        if (!response.ok) {
+          if (response.status >= 429) {
+            recordFailure(attempt);
+            continue;
+          }
+          recordFailure(attempt);
+          continue;
         }
 
-        recordSuccess(providerName, latency);
+        if (!response.body) {
+          recordFailure(attempt);
+          continue;
+        }
 
-        // Pipe through transformer
-        const transformer = createStreamTransformer(providerName, provider, startTime);
+        recordSuccess(attempt);
+
+        // Pipe through transformer that rewrites model name + captures usage
+        const transformer = createStreamTransformer(attempt, provider, startTime);
         const transformedStream = response.body.pipeThrough(transformer);
 
         return new Response(transformedStream, {
@@ -281,82 +238,103 @@ export async function handleChatCompletion(body: ChatRequest): Promise<Response>
             "Content-Type": "text/event-stream",
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
-            "X-Nexus-Model": providerName,
-            "X-Nexus-Fallback-Level": String(attempts.findIndex(a => a.providerName === providerName)),
-            "X-Nexus-Retry-Count": String(errors.length),
-            "X-Nexus-Attempts": String(attempts.length),
-          },
-        });
-      } else {
-        // ─── Non-Streaming Path ─────────────────────────────────
-        const { response, latency } = await callProviderWithRetry(providerName, provider, body, false);
-
-        const data = (await response.json()) as any;
-        recordSuccess(providerName, latency);
-
-        // Calculate tokens and cost
-        const tokens = data.usage?.total_tokens || 0;
-        const cost = (tokens / 1000) * provider.costPer1kTokens;
-
-        stats.record({
-          model: providerName,
-          tokens,
-          cost,
-          latency,
-          timestamp: Date.now(),
-          success: true,
-        });
-
-        // Rewrite response model name
-        data.model = providerName;
-
-        return new Response(JSON.stringify(data), {
-          status: 200,
-          headers: {
-            "Content-Type": "application/json",
-            "X-Nexus-Model": providerName,
-            "X-Nexus-Fallback-Level": String(attempts.findIndex(a => a.providerName === providerName)),
-            "X-Nexus-Retry-Count": String(errors.length),
-            "X-Nexus-Attempts": String(attempts.length),
+            "X-Nexus-Model": attempt,
           },
         });
       }
-    } catch (err: any) {
-      const errorMsg = err.message || String(err);
-      console.warn(`[Gateway] ${providerName} failed: ${errorMsg}`);
-      
-      recordFailure(providerName, errorMsg);
-      errors.push({ provider: providerName, error: errorMsg });
+
+      // ─── Non-Streaming Path ─────────────────────────────────
+      const { response, latency } = await callProvider(provider, body);
+
+      if (!response.ok) {
+        if (response.status >= 429) {
+          recordFailure(attempt);
+          continue;
+        }
+        recordFailure(attempt);
+        continue;
+      }
+
+      const data = await response.json() as any;
+      recordSuccess(attempt);
+
+      // Calculate tokens and cost
+      const tokens = data.usage?.total_tokens || 0;
+      const cost = (tokens / 1000) * provider.costPer1kTokens;
 
       stats.record({
-        model: providerName,
+        model: attempt,
+        tokens,
+        cost,
+        latency,
+        timestamp: Date.now(),
+        success: true,
+      });
+
+      // Publish live request event for dashboard
+      events.publish({
+        type: "request",
+        timestamp: Date.now(),
+        data: {
+          model: attempt,
+          status: "completed",
+          latency,
+          tokens,
+          cost,
+          success: true,
+        },
+      });
+
+      // Rewrite response to show our model name
+      data.model = attempt;
+
+      return new Response(JSON.stringify(data), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (err: any) {
+      recordFailure(attempt);
+      stats.record({
+        model: attempt,
         tokens: 0,
         cost: 0,
-        latency: Date.now() - startTime,
+        latency: 0,
         timestamp: Date.now(),
         success: false,
       });
-
-      // Continue to next provider
+      
+      // Publish error event for dashboard
+      events.publish({
+        type: "error",
+        timestamp: Date.now(),
+        data: {
+          model: attempt,
+          message: err.message || "Provider request failed",
+          success: false,
+        },
+      });
+      
       continue;
     }
   }
 
-  // 4. If we reach here, ALL providers failed (should NEVER happen with ultimate fallback)
-  console.error(`[Gateway] 🚨 CRITICAL: All ${attempts.length} providers failed!`);
-  console.error("[Gateway] Errors:", JSON.stringify(errors, null, 2));
+  // All providers failed
+  const errorResponse = {
+    error: { message: "All providers failed. Please try again.", type: "all_providers_failed" },
+  };
 
-  return new Response(
-    JSON.stringify({
-      error: {
-        message: "All AI providers are currently unavailable. Please try again in a moment.",
-        type: "service_unavailable",
-        details: errors.slice(0, 3), // Show first 3 errors
-      },
-    }),
-    {
+  if (isStream) {
+    // Return error as SSE for streaming clients
+    const encoder = new TextEncoder();
+    const errorChunk = `data: ${JSON.stringify({ error: errorResponse.error })}\n\ndata: [DONE]\n\n`;
+    return new Response(encoder.encode(errorChunk), {
       status: 503,
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+      headers: { "Content-Type": "text/event-stream" },
+    });
+  }
+
+  return new Response(JSON.stringify(errorResponse), {
+    status: 503,
+    headers: { "Content-Type": "application/json" },
+  });
 }

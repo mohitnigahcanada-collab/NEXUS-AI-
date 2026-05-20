@@ -1,7 +1,7 @@
 // Nexus AI - Event Bus (typed pub/sub for WebSocket + internal)
 
 export interface NexusEvent {
-  type: "request" | "error" | "provider_down" | "provider_up" | "budget_warning" | "log" | "restart";
+  type: "request" | "error" | "provider_down" | "provider_up" | "budget_warning" | "system" | "init" | "health";
   timestamp: number;
   data: Record<string, unknown>;
 }
@@ -24,6 +24,11 @@ class EventBus {
         // Don't let listener errors break the bus
       }
     }
+  }
+
+  // Alias for emit - more intuitive for publishing
+  publish(event: NexusEvent) {
+    this.emit(event);
   }
 }
 

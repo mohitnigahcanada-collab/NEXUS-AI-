@@ -1,16 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nexus AI - Intelligence Core</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script type="module" src="./app.tsx"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0f; color: #e4e4e7; min-height: 100vh; }
+    .app { display: flex; height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: #18181b; border-right: 1px solid #27272a; display: flex; flex-direction: column; }
+    .logo { padding: 24px; font-size: 20px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #27272a; }
+    .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .nav { flex: 1; padding: 16px; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; cursor: pointer; transition: all 0.2s; margin-bottom: 4px; color: #a1a1aa; }
+    .nav-item:hover { background: #27272a; color: #fff; }
+    .nav-item.active { background: #3b82f6; color: #fff; }
+    .nav-icon { font-size: 18px; }
+    
+    /* Main */
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .header { padding: 20px 32px; border-bottom: 1px solid #27272a; background: #18181b; }
+    .header h1 { font-size: 24px; font-weight: 600; }
+    .header-sub { color: #71717a; font-size: 14px; margin-top: 4px; }
+    .content { flex: 1; overflow-y: auto; padding: 32px; }
+    
+    /* Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 32px; }
+    .stat-card { background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 20px; }
+    .stat-label { font-size: 12px; color: #71717a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .stat-value { font-size: 32px; font-weight: 700; color: #fff; }
+    .stat-change { font-size: 12px; margin-top: 8px; }
+    .stat-change.positive { color: #22c55e; }
+    .stat-change.negative { color: #ef4444; }
+    
+    /* Models Grid */
+    .section-title { font-size: 18px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .models-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .model-card { background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 20px; transition: all 0.2s; }
+    .model-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+    .model-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .model-name { font-weight: 600; font-size: 15px; }
+    .model-status { width: 10px; height: 10px; border-radius: 50%; }
+    .model-status.healthy { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+    .model-status.unhealthy { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+    .model-tier { font-size: 12px; color: #71717a; background: #27272a; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+    .model-stats { display: flex; gap: 16px; font-size: 12px; color: #a1a1aa; }
+    
+    /* Logs */
+    .logs-container { background: #0f0f14; border: 1px solid #27272a; border-radius: 12px; padding: 16px; max-height: 400px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    .log-entry { padding: 8px 0; border-bottom: 1px solid #27272a; display: flex; gap: 12px; }
+    .log-time { color: #71717a; min-width: 80px; }
+    .log-level { min-width: 60px; font-weight: 500; }
+    .log-level.info { color: #3b82f6; }
+    .log-level.warn { color: #f59e0b; }
+    .log-level.error { color: #ef4444; }
+    .log-level.success { color: #22c55e; }
+    .log-msg { color: #e4e4e7; }
+    
+    /* Loading */
+    .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: #71717a; }
+    .spinner { width: 24px; height: 24px; border: 2px solid #27272a; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* Hidden pages */
+    .page { display: none; }
+    .page.active { display: block; }
+    
+    /* Control buttons */
+    .controls { display: flex; gap: 12px; margin-bottom: 24px; }
+    .btn { padding: 12px 24px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+    .btn-primary { background: #3b82f6; color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-danger { background: #ef4444; color: #fff; }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-success { background: #22c55e; color: #fff; }
+    .btn-success:hover { background: #16a34a; }
+    .btn-warning { background: #f59e0b; color: #fff; }
+    .btn-warning:hover { background: #d97706; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    /* Status indicator */
+    .server-status { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: #18181b; border-radius: 8px; border: 1px solid #27272a; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; animation: pulse 2s infinite; }
+    .status-dot.online { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
+    .status-dot.offline { background: #ef4444; box-shadow: 0 0 12px #ef4444; animation: none; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    
+    /* Live activity */
+    .live-activity { background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .live-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .live-badge { background: #ef4444; color: #fff; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; animation: pulse 1.5s infinite; }
+    .live-list { max-height: 200px; overflow-y: auto; }
+    .live-item { padding: 8px 12px; border-radius: 6px; margin-bottom: 4px; font-size: 13px; display: flex; justify-content: space-between; }
+    .live-item.request { background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; }
+    .live-item.error { background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; }
+    .live-item.success { background: rgba(34, 197, 94, 0.1); border-left: 3px solid #22c55e; }
+  </style>
 </head>
 <body>
-  <div id="root"></div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">⚡</div>
+        Nexus AI
+      </div>
+      <nav class="nav">
+        <div class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">📊</span> Dashboard
+        </div>
+        <div class="nav-item" data-page="models">
+          <span class="nav-icon">🤖</span> Models
+        </div>
+        <div class="nav-item" data-page="logs">
+          <span class="nav-icon">📋</span> Live Logs
+        </div>
+        <div class="nav-item" data-page="settings">
+          <span class="nav-icon">⚙️</span> Settings
+        </div>
+      </nav>
+    </aside>
+    
+    <main class="main">
+      <header class="header">
+        <h1 id="page-title">Dashboard</h1>
+        <p class="header-sub" id="page-sub">Real-time system overview</p>
+      </header>
+      
+      <div class="content">
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page active">
+          <!-- Server Controls -->
+          <div class="controls">
+            <div class="server-status">
+              <span class="status-dot online" id="status-dot"></span>
+              <span id="status-text">Server Online</span>
+            </div>
+            <button class="btn btn-warning" id="btn-restart" onclick="restartServer()">
+              🔄 Restart
+            </button>
+            <button class="btn btn-danger" id="btn-stop" onclick="stopServer()">
+              ⏹️ Stop
+            </button>
+            <button class="btn btn-success" id="btn-start" onclick="startServer()" style="display:none;">
+              ▶️ Start
+            </button>
+          </div>
+          
+          <!-- Live Activity Panel -->
+          <div class="live-activity">
+            <div class="live-header">
+              <h3>Live Activity</h3>
+              <span class="live-badge" id="live-badge">● LIVE</span>
+            </div>
+            <div class="live-list" id="live-requests"></div>
+          </div>
+          
+          <!-- Live Errors Panel -->
+          <div class="live-activity" style="border-color: #ef4444;">
+            <div class="live-header">
+              <h3 style="color: #ef4444;">Recent Errors</h3>
+              <span id="error-count" style="color: #ef4444; font-weight: 600;">0 errors</span>
+            </div>
+            <div class="live-list" id="live-errors"></div>
+          </div>
+          
+          <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Requests</div>
+              <div class="stat-value" id="stat-requests">--</div>
+              <div class="stat-change positive" id="stat-requests-change">Loading...</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Avg Latency</div>
+              <div class="stat-value" id="stat-latency">-- ms</div>
+              <div class="stat-change" id="stat-latency-change">--</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Success Rate</div>
+              <div class="stat-value" id="stat-success">--%</div>
+              <div class="stat-change positive" id="stat-success-change">--</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Cost Today</div>
+              <div class="stat-value" id="stat-cost">$--</div>
+              <div class="stat-change" id="stat-cost-change">--</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Healthy Models</div>
+              <div class="stat-value" id="stat-healthy">--</div>
+              <div class="stat-change" id="stat-healthy-change">--</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Uptime</div>
+              <div class="stat-value" id="stat-uptime">100%</div>
+              <div class="stat-change positive">All systems operational</div>
+            </div>
+          </div>
+          
+          <h2 class="section-title">🤖 Model Status</h2>
+          <div class="models-grid" id="models-grid-mini"></div>
+        </div>
+        
+        <!-- Models Page -->
+        <div id="models-page" class="page">
+          <div class="models-grid" id="models-grid-full"></div>
+        </div>
+        
+        <!-- Logs Page -->
+        <div id="logs-page" class="page">
+          <h2 class="section-title">📋 Live System Logs</h2>
+          <div class="logs-container" id="logs-container"></div>
+        </div>
+        
+        <!-- Settings Page -->
+        <div id="settings-page" class="page">
+          <div class="stat-card" style="max-width: 500px;">
+            <h3 style="margin-bottom: 16px;">API Configuration</h3>
+            <p style="color: #71717a; margin-bottom: 16px;">Server: http://localhost:4000</p>
+            <p style="color: #71717a;">Version: v2.0.1-bulletproof</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    const pages = document.querySelectorAll('.page');
+    const pageTitle = document.getElementById('page-title');
+    const pageSub = document.getElementById('page-sub');
+    
+    const pageTitles = {
+      dashboard: ['Dashboard', 'Real-time system overview'],
+      models: ['Models', 'All available AI models'],
+      logs: ['Live Logs', 'Real-time system activity'],
+      settings: ['Settings', 'System configuration']
+    };
+    
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const page = item.dataset.page;
+        navItems.forEach(i => i.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
+        item.classList.add('active');
+        document.getElementById(page + '-page').classList.add('active');
+        pageTitle.textContent = pageTitles[page][0];
+        pageSub.textContent = pageTitles[page][1];
+      });
+    });
+
+    // ─── Live Activity Tracking ─────────────────────────────────────
+    const liveRequests = [];
+    const liveErrors = [];
+    let serverOnline = true;
+    
+    function addLiveRequest(data) {
+      const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+      liveRequests.unshift({ time, ...data });
+      if (liveRequests.length > 50) liveRequests.pop();
+      renderLiveRequests();
+    }
+    
+    function addLiveError(data) {
+      const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+      liveErrors.unshift({ time, ...data });
+      if (liveErrors.length > 50) liveErrors.pop();
+      renderLiveErrors();
+      document.getElementById('error-count').textContent = liveErrors.length + ' errors';
+    }
+    
+    function renderLiveRequests() {
+      const container = document.getElementById('live-requests');
+      if (!container) return;
+      container.innerHTML = liveRequests.length === 0 
+        ? '<div style="color:#71717a;padding:12px;">Waiting for requests...</div>'
+        : liveRequests.slice(0, 20).map(r => `
+          <div class="live-item ${r.success ? 'success' : 'request'}">
+            <span><strong>${r.model || 'unknown'}</strong> - ${r.status || 'processing'}</span>
+            <span style="color:#71717a">${r.latency ? r.latency + 'ms' : ''} ${r.time}</span>
+          </div>
+        `).join('');
+    }
+    
+    function renderLiveErrors() {
+      const container = document.getElementById('live-errors');
+      if (!container) return;
+      container.innerHTML = liveErrors.length === 0
+        ? '<div style="color:#71717a;padding:12px;">No errors - all systems healthy!</div>'
+        : liveErrors.slice(0, 10).map(e => `
+          <div class="live-item error">
+            <span><strong>${e.model || 'system'}</strong> - ${e.message || 'Unknown error'}</span>
+            <span style="color:#71717a">${e.time}</span>
+          </div>
+        `).join('');
+    }
+
+    // ─── Server Controls ────────────────────────────────────────────
+    function updateServerStatus(online) {
+      serverOnline = online;
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+      const btnStop = document.getElementById('btn-stop');
+      const btnStart = document.getElementById('btn-start');
+      const badge = document.getElementById('live-badge');
+      
+      if (online) {
+        dot.className = 'status-dot online';
+        text.textContent = 'Server Online';
+        btnStop.style.display = 'flex';
+        btnStart.style.display = 'none';
+        badge.style.background = '#ef4444';
+        badge.textContent = '● LIVE';
+      } else {
+        dot.className = 'status-dot offline';
+        text.textContent = 'Server Offline';
+        btnStop.style.display = 'none';
+        btnStart.style.display = 'flex';
+        badge.style.background = '#71717a';
+        badge.textContent = '● OFFLINE';
+      }
+    }
+    
+    async function restartServer() {
+      const btn = document.getElementById('btn-restart');
+      btn.disabled = true;
+      btn.innerHTML = '🔄 Restarting...';
+      addLog('warn', 'Server restart initiated...');
+      
+      try {
+        const res = await fetch('/api/server/restart', { method: 'POST' });
+        const data = await res.json();
+        if (data.ok) {
+          addLog('success', 'Server restart signal sent');
+          updateServerStatus(false);
+          // Server will come back up, poll for it
+          setTimeout(checkServerStatus, 2000);
+        } else {
+          addLog('error', 'Restart failed: ' + (data.error || 'Unknown'));
+        }
+      } catch (err) {
+        addLog('error', 'Restart request failed: ' + err.message);
+      }
+      
+      btn.disabled = false;
+      btn.innerHTML = '🔄 Restart';
+    }
+    
+    async function stopServer() {
+      if (!confirm('Are you sure you want to stop the server?')) return;
+      const btn = document.getElementById('btn-stop');
+      btn.disabled = true;
+      addLog('warn', 'Server stop initiated...');
+      
+      try {
+        const res = await fetch('/api/server/stop', { method: 'POST' });
+        const data = await res.json();
+        if (data.ok) {
+          addLog('warn', 'Server stopping...');
+          updateServerStatus(false);
+        }
+      } catch (err) {
+        addLog('error', 'Stop failed: ' + err.message);
+      }
+      btn.disabled = false;
+    }
+    
+    async function startServer() {
+      addLog('info', 'Server start requested - please start manually or use systemd');
+      alert('Server is stopped. Please start it manually:\n\ncd ~/nexus-ai-v2 && bun run src/index.ts');
+    }
+    
+    async function checkServerStatus() {
+      try {
+        const res = await fetch('/api/stats', { signal: AbortSignal.timeout(3000) });
+        if (res.ok) {
+          updateServerStatus(true);
+          addLog('success', 'Server is back online');
+        }
+      } catch {
+        updateServerStatus(false);
+        setTimeout(checkServerStatus, 3000);
+      }
+    }
+
+    // ─── Logs ───────────────────────────────────────────────────────
+    const logs = [];
+    function addLog(level, msg) {
+      const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+      logs.unshift({ time, level, msg });
+      if (logs.length > 100) logs.pop();
+      renderLogs();
+    }
+    
+    function renderLogs() {
+      const container = document.getElementById('logs-container');
+      container.innerHTML = logs.map(l => `
+        <div class="log-entry">
+          <span class="log-time">${l.time}</span>
+          <span class="log-level ${l.level}">${l.level.toUpperCase()}</span>
+          <span class="log-msg">${l.msg}</span>
+        </div>
+      `).join('');
+    }
+
+    // ─── Fetch Stats ────────────────────────────────────────────────
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        
+        const requests = data.today?.requests || 0;
+        const latency = Math.round(data.today?.avgLatency || 0);
+        const errors = data.today?.errors || 0;
+        const cost = data.today?.cost || 0;
+        const successRate = requests > 0 ? Math.round(((requests - errors) / requests) * 100) : 100;
+        
+        document.getElementById('stat-requests').textContent = requests.toLocaleString();
+        document.getElementById('stat-requests-change').textContent = `Today`;
+        document.getElementById('stat-latency').textContent = latency + ' ms';
+        document.getElementById('stat-latency-change').textContent = 'Average response time';
+        document.getElementById('stat-success').textContent = successRate + '%';
+        document.getElementById('stat-success-change').textContent = errors === 0 ? 'No errors' : errors + ' errors';
+        document.getElementById('stat-cost').textContent = '$' + cost.toFixed(4);
+        document.getElementById('stat-cost-change').textContent = 'API cost today';
+        
+        const providers = data.providers || {};
+        const healthyCount = Object.values(providers).filter(p => p.healthy).length;
+        const totalCount = Object.keys(providers).length;
+        document.getElementById('stat-healthy').textContent = healthyCount + '/' + totalCount;
+        document.getElementById('stat-healthy-change').textContent = healthyCount === totalCount ? 'All healthy' : (totalCount - healthyCount) + ' unhealthy';
+        
+        updateServerStatus(true);
+      } catch (err) {
+        updateServerStatus(false);
+        addLog('error', 'Failed to fetch stats: ' + err.message);
+      }
+    }
+
+    // ─── Fetch Models ───────────────────────────────────────────────
+    async function fetchModels() {
+      try {
+        const res = await fetch('/api/models');
+        const data = await res.json();
+        
+        const models = data.models || [];
+        
+        const renderModel = (m) => `
+          <div class="model-card">
+            <div class="model-header">
+              <span class="model-name">${m.id}</span>
+              <span class="model-status ${m.healthy ? 'healthy' : 'unhealthy'}"></span>
+            </div>
+            <span class="model-tier">${m.tier || 'general'}</span>
+            <div class="model-stats">
+              <span>$${(m.costPer1kTokens || 0).toFixed(6)}/1K</span>
+              <span>${m.healthy ? '✓ Ready' : '✗ Down'}</span>
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('models-grid-mini').innerHTML = models.slice(0, 6).map(renderModel).join('');
+        document.getElementById('models-grid-full').innerHTML = models.map(renderModel).join('');
+        
+        addLog('success', `Loaded ${models.length} models`);
+      } catch (err) {
+        addLog('error', 'Failed to fetch models: ' + err.message);
+      }
+    }
+
+    // ─── WebSocket for Live Updates ─────────────────────────────────
+    let ws = null;
+    function connectWebSocket() {
+      try {
+        ws = new WebSocket(`ws://${location.host}/ws`);
+        ws.onopen = () => {
+          addLog('success', 'WebSocket connected - receiving live updates');
+          updateServerStatus(true);
+        };
+        ws.onmessage = (e) => {
+          try {
+            const event = JSON.parse(e.data);
+            
+            // Handle different event types
+            if (event.type === 'request') {
+              addLiveRequest({
+                model: event.data?.model,
+                status: event.data?.status || 'completed',
+                latency: event.data?.latency,
+                success: !event.data?.error
+              });
+              addLog('info', `[${event.data?.model}] ${event.data?.status || 'Request processed'} ${event.data?.latency ? '(' + event.data.latency + 'ms)' : ''}`);
+            } else if (event.type === 'error') {
+              addLiveError({
+                model: event.data?.model || 'system',
+                message: event.data?.message || 'Unknown error'
+              });
+              addLog('error', event.data?.message || 'Unknown error');
+            } else if (event.type === 'init') {
+              addLog('info', 'Received initial state from server');
+            } else if (event.type === 'health') {
+              // Health check update
+              fetchStats();
+            }
+          } catch {}
+        };
+        ws.onclose = () => {
+          addLog('warn', 'WebSocket disconnected, reconnecting...');
+          updateServerStatus(false);
+          setTimeout(connectWebSocket, 3000);
+        };
+        ws.onerror = () => {
+          updateServerStatus(false);
+        };
+      } catch (err) {
+        addLog('warn', 'WebSocket not available');
+        updateServerStatus(false);
+      }
+    }
+
+    // ─── Initialize ─────────────────────────────────────────────────
+    addLog('info', 'Nexus AI Dashboard v2.0.1 starting...');
+    renderLiveRequests();
+    renderLiveErrors();
+    fetchStats();
+    fetchModels();
+    connectWebSocket();
+    
+    // Refresh every 5 seconds
+    setInterval(fetchStats, 5000);
+    setInterval(fetchModels, 30000);
+    
+    addLog('success', 'Dashboard initialized successfully');
+  </script>
 </body>
 </html>
