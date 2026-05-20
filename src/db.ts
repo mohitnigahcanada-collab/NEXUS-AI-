@@ -16,6 +16,7 @@ const db = new Database(DB_PATH);
 // Enable WAL mode for better concurrent read performance
 db.run("PRAGMA journal_mode = WAL");
 db.run("PRAGMA synchronous = NORMAL");
+db.run("PRAGMA busy_timeout = 5000"); // Wait up to 5s if database is locked
 
 // ─── Schema ──────────────────────────────────────────────────────
 

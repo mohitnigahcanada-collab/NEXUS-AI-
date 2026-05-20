@@ -1,0 +1,369 @@
+[
+  {
+    "name": "GROQ",
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "totalModels": 16,
+    "models": [
+      {
+        "id": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "provider": "GROQ"
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-86m",
+        "provider": "GROQ"
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-22m",
+        "provider": "GROQ"
+      },
+      {
+        "id": "canopylabs/orpheus-arabic-saudi",
+        "provider": "GROQ"
+      },
+      {
+        "id": "llama-3.1-8b-instant",
+        "provider": "GROQ"
+      },
+      {
+        "id": "qwen/qwen3-32b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "groq/compound-mini",
+        "provider": "GROQ"
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "canopylabs/orpheus-v1-english",
+        "provider": "GROQ"
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "allam-2-7b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "llama-3.3-70b-versatile",
+        "provider": "GROQ"
+      },
+      {
+        "id": "openai/gpt-oss-safeguard-20b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "groq/compound",
+        "provider": "GROQ"
+      },
+      {
+        "id": "whisper-large-v3-turbo",
+        "provider": "GROQ"
+      },
+      {
+        "id": "whisper-large-v3",
+        "provider": "GROQ"
+      }
+    ]
+  },
+  {
+    "name": "Gemini",
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+    "totalModels": 0,
+    "models": [],
+    "error": "Missing GEMINI_API_KEY"
+  },
+  {
+    "name": "SiliconFlow",
+    "baseUrl": "https://api.siliconflow.com/v1",
+    "totalModels": 67,
+    "models": [
+      {
+        "id": "deepseek-ai/DeepSeek-V4-Pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V4-Flash",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "moonshotai/Kimi-K2.6",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "tencent/Hy3-preview",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-5.1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.6-35B-A3B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.6-27B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-5V-Turbo",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-397B-A17B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-122B-A10B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-35B-A3B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-27B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-9B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "MiniMaxAI/MiniMax-M2.5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "stepfun-ai/Step-3.5-Flash",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "moonshotai/Kimi-K2.5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "google/gemma-4-26B-A4B-it",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "google/gemma-4-31B-it",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-4.7",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.2",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.2-Exp",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.1-Terminus",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-R1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Tongyi-MAI/Z-Image-Turbo",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "nex-agi/DeepSeek-V3.1-Nex-N1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.2-flex",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.2-pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-32B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-32B-Thinking",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-8B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-4.5-Air",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Wan-AI/Wan2.2-I2V-A14B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Wan-AI/Wan2.2-T2V-A14B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "inclusionAI/Ling-flash-2.0",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen-Image",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen-Image-Edit",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "tencent/Hunyuan-A13B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-32B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-14B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-8B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Reranker-8B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Embedding-8B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Embedding-4B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Reranker-0.6B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Embedding-0.6B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-Kontext-pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-Kontext-max",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX-1.1-pro-Ultra",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX-1.1-pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-Kontext-dev",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen2.5-72B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "IndexTeam/IndexTTS-2",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-schnell",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-dev",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "fishaudio/fish-speech-1.5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "FunAudioLLM/CosyVoice2-0.5B",
+        "provider": "SiliconFlow"
+      }
+    ]
+  },
+  {
+    "name": "NVIDIA",
+    "baseUrl": "https://integrate.api.nvidia.com/v1",
+    "totalModels": 0,
+    "models": [],
+    "error": "Missing NVIDIA_API_KEY"
+  },
+  {
+    "name": "Poolside",
+    "baseUrl": "https://inference.poolside.ai/v1",
+    "totalModels": 0,
+    "models": [],
+    "error": "Missing POOLSIDE_API_KEY"
+  }
+]

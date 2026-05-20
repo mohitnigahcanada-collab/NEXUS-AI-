@@ -1,0 +1,2255 @@
+[
+  {
+    "provider": "nexus-flash",
+    "model": "llama-3.3-70b-versatile",
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "status": "success",
+    "latency": 134,
+    "details": {
+      "object": "list",
+      "data": [
+        {
+          "id": "qwen/qwen3-32b",
+          "object": "model",
+          "created": 1748396646,
+          "owned_by": "Alibaba Cloud",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 40960
+        },
+        {
+          "id": "canopylabs/orpheus-arabic-saudi",
+          "object": "model",
+          "created": 1765926439,
+          "owned_by": "Canopy Labs",
+          "active": true,
+          "context_window": 4000,
+          "public_apps": null,
+          "max_completion_tokens": 50000
+        },
+        {
+          "id": "groq/compound-mini",
+          "object": "model",
+          "created": 1756949707,
+          "owned_by": "Groq",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 8192
+        },
+        {
+          "id": "llama-3.3-70b-versatile",
+          "object": "model",
+          "created": 1733447754,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 32768
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "object": "model",
+          "created": 1754407957,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 65536
+        },
+        {
+          "id": "meta-llama/llama-4-scout-17b-16e-instruct",
+          "object": "model",
+          "created": 1743874824,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 8192
+        },
+        {
+          "id": "whisper-large-v3",
+          "object": "model",
+          "created": 1693721698,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 448,
+          "public_apps": null,
+          "max_completion_tokens": 448
+        },
+        {
+          "id": "meta-llama/llama-prompt-guard-2-86m",
+          "object": "model",
+          "created": 1748632165,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 512,
+          "public_apps": null,
+          "max_completion_tokens": 512
+        },
+        {
+          "id": "whisper-large-v3-turbo",
+          "object": "model",
+          "created": 1728413088,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 448,
+          "public_apps": null,
+          "max_completion_tokens": 448
+        },
+        {
+          "id": "meta-llama/llama-prompt-guard-2-22m",
+          "object": "model",
+          "created": 1748632101,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 512,
+          "public_apps": null,
+          "max_completion_tokens": 512
+        },
+        {
+          "id": "llama-3.1-8b-instant",
+          "object": "model",
+          "created": 1693721698,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 131072
+        },
+        {
+          "id": "openai/gpt-oss-safeguard-20b",
+          "object": "model",
+          "created": 1761708789,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 65536
+        },
+        {
+          "id": "groq/compound",
+          "object": "model",
+          "created": 1756949530,
+          "owned_by": "Groq",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 8192
+        },
+        {
+          "id": "allam-2-7b",
+          "object": "model",
+          "created": 1737672203,
+          "owned_by": "SDAIA",
+          "active": true,
+          "context_window": 4096,
+          "public_apps": null,
+          "max_completion_tokens": 4096
+        },
+        {
+          "id": "canopylabs/orpheus-v1-english",
+          "object": "model",
+          "created": 1766186316,
+          "owned_by": "Canopy Labs",
+          "active": true,
+          "context_window": 4000,
+          "public_apps": null,
+          "max_completion_tokens": 50000
+        },
+        {
+          "id": "openai/gpt-oss-120b",
+          "object": "model",
+          "created": 1754408224,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 65536
+        }
+      ]
+    }
+  },
+  {
+    "provider": "nexus-air",
+    "model": "gemini-2.5-flash",
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "status": "success",
+    "latency": 157,
+    "details": {
+      "object": "list",
+      "data": [
+        {
+          "id": "models/gemini-2.5-flash",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash"
+        },
+        {
+          "id": "models/gemini-2.5-pro",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Pro"
+        },
+        {
+          "id": "models/gemini-2.0-flash",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash"
+        },
+        {
+          "id": "models/gemini-2.0-flash-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash 001"
+        },
+        {
+          "id": "models/gemini-2.0-flash-lite-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash-Lite 001"
+        },
+        {
+          "id": "models/gemini-2.0-flash-lite",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash-Lite"
+        },
+        {
+          "id": "models/gemini-2.5-flash-preview-tts",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Preview TTS"
+        },
+        {
+          "id": "models/gemini-2.5-pro-preview-tts",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Pro Preview TTS"
+        },
+        {
+          "id": "models/gemma-4-26b-a4b-it",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemma 4 26B A4B IT"
+        },
+        {
+          "id": "models/gemma-4-31b-it",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemma 4 31B IT"
+        },
+        {
+          "id": "models/gemini-flash-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Flash Latest"
+        },
+        {
+          "id": "models/gemini-flash-lite-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Flash-Lite Latest"
+        },
+        {
+          "id": "models/gemini-pro-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Pro Latest"
+        },
+        {
+          "id": "models/gemini-2.5-flash-lite",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash-Lite"
+        },
+        {
+          "id": "models/gemini-2.5-flash-image",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana"
+        },
+        {
+          "id": "models/gemini-3-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3 Pro Preview"
+        },
+        {
+          "id": "models/gemini-3-flash-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3 Flash Preview"
+        },
+        {
+          "id": "models/gemini-3.1-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Pro Preview"
+        },
+        {
+          "id": "models/gemini-3.1-pro-preview-customtools",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Pro Preview Custom Tools"
+        },
+        {
+          "id": "models/gemini-3.1-flash-lite-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash Lite Preview"
+        },
+        {
+          "id": "models/gemini-3.1-flash-lite",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash Lite"
+        },
+        {
+          "id": "models/gemini-3-pro-image-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana Pro"
+        },
+        {
+          "id": "models/nano-banana-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana Pro"
+        },
+        {
+          "id": "models/gemini-3.1-flash-image-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana 2"
+        },
+        {
+          "id": "models/gemini-3.5-flash",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.5 Flash"
+        },
+        {
+          "id": "models/lyria-3-clip-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Lyria 3 Clip Preview"
+        },
+        {
+          "id": "models/lyria-3-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Lyria 3 Pro Preview"
+        },
+        {
+          "id": "models/gemini-3.1-flash-tts-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash TTS Preview"
+        },
+        {
+          "id": "models/gemini-robotics-er-1.5-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Robotics-ER 1.5 Preview"
+        },
+        {
+          "id": "models/gemini-robotics-er-1.6-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Robotics-ER 1.6 Preview"
+        },
+        {
+          "id": "models/gemini-2.5-computer-use-preview-10-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Computer Use Preview 10-2025"
+        },
+        {
+          "id": "models/antigravity-preview-05-2026",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Antigravity Agent Preview"
+        },
+        {
+          "id": "models/deep-research-max-preview-04-2026",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Deep Research Max Preview (Apr-21-2026)"
+        },
+        {
+          "id": "models/deep-research-preview-04-2026",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Deep Research Preview (Apr-21-2026)"
+        },
+        {
+          "id": "models/deep-research-pro-preview-12-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Deep Research Pro Preview (Dec-12-2025)"
+        },
+        {
+          "id": "models/gemini-embedding-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Embedding 001"
+        },
+        {
+          "id": "models/gemini-embedding-2-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Embedding 2 Preview"
+        },
+        {
+          "id": "models/gemini-embedding-2",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Embedding 2"
+        },
+        {
+          "id": "models/aqa",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Model that performs Attributed Question Answering."
+        },
+        {
+          "id": "models/imagen-4.0-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Imagen 4"
+        },
+        {
+          "id": "models/imagen-4.0-ultra-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Imagen 4 Ultra"
+        },
+        {
+          "id": "models/imagen-4.0-fast-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Imagen 4 Fast"
+        },
+        {
+          "id": "models/veo-2.0-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 2"
+        },
+        {
+          "id": "models/veo-3.0-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3"
+        },
+        {
+          "id": "models/veo-3.0-fast-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3 fast"
+        },
+        {
+          "id": "models/veo-3.1-generate-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3.1"
+        },
+        {
+          "id": "models/veo-3.1-fast-generate-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3.1 fast"
+        },
+        {
+          "id": "models/veo-3.1-lite-generate-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3.1 lite"
+        },
+        {
+          "id": "models/gemini-2.5-flash-native-audio-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Native Audio Latest"
+        },
+        {
+          "id": "models/gemini-2.5-flash-native-audio-preview-09-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Native Audio Preview 09-2025"
+        },
+        {
+          "id": "models/gemini-2.5-flash-native-audio-preview-12-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Native Audio Preview 12-2025"
+        },
+        {
+          "id": "models/gemini-3.1-flash-live-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash Live Preview"
+        },
+        {
+          "id": "models/lyria-realtime-exp",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Lyria Realtime Experimental"
+        }
+      ]
+    }
+  },
+  {
+    "provider": "nexus-deep",
+    "model": "deepseek-ai/DeepSeek-V3",
+    "baseUrl": "https://api.siliconflow.com/v1",
+    "status": "success",
+    "latency": 235,
+    "details": {
+      "object": "list",
+      "data": [
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Pro",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V4-Flash",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "moonshotai/Kimi-K2.6",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "tencent/Hy3-preview",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "zai-org/GLM-5.1",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.6-35B-A3B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.6-27B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "zai-org/GLM-5V-Turbo",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.5-397B-A17B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.5-122B-A10B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.5-35B-A3B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.5-27B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3.5-9B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "MiniMaxAI/MiniMax-M2.5",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "zai-org/GLM-5",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "stepfun-ai/Step-3.5-Flash",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "moonshotai/Kimi-K2.5",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "google/gemma-4-26B-A4B-it",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "google/gemma-4-31B-it",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "zai-org/GLM-4.7",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V3.2",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V3.2-Exp",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V3.1-Terminus",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V3.1",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-V3",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "deepseek-ai/DeepSeek-R1",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Tongyi-MAI/Z-Image-Turbo",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "nex-agi/DeepSeek-V3.1-Nex-N1",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.2-flex",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.2-pro",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-VL-32B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-VL-32B-Thinking",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-VL-8B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "openai/gpt-oss-120b",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "zai-org/GLM-4.5-Air",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Wan-AI/Wan2.2-I2V-A14B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Wan-AI/Wan2.2-T2V-A14B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "inclusionAI/Ling-flash-2.0",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen-Image",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen-Image-Edit",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "tencent/Hunyuan-A13B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-32B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-14B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-8B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-Reranker-8B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-Embedding-8B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-Embedding-4B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-Reranker-0.6B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen3-Embedding-0.6B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.1-Kontext-pro",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.1-Kontext-max",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX-1.1-pro-Ultra",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX-1.1-pro",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.1-Kontext-dev",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen2.5-72B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "Qwen/Qwen2.5-7B-Instruct",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "IndexTeam/IndexTTS-2",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.1-schnell",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "black-forest-labs/FLUX.1-dev",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "fishaudio/fish-speech-1.5",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        },
+        {
+          "id": "FunAudioLLM/CosyVoice2-0.5B",
+          "object": "model",
+          "created": 0,
+          "owned_by": ""
+        }
+      ]
+    }
+  },
+  {
+    "provider": "nexus-pro",
+    "model": "gemini-2.5-pro",
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "status": "success",
+    "latency": 95,
+    "details": {
+      "object": "list",
+      "data": [
+        {
+          "id": "models/gemini-2.5-flash",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash"
+        },
+        {
+          "id": "models/gemini-2.5-pro",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Pro"
+        },
+        {
+          "id": "models/gemini-2.0-flash",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash"
+        },
+        {
+          "id": "models/gemini-2.0-flash-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash 001"
+        },
+        {
+          "id": "models/gemini-2.0-flash-lite-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash-Lite 001"
+        },
+        {
+          "id": "models/gemini-2.0-flash-lite",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.0 Flash-Lite"
+        },
+        {
+          "id": "models/gemini-2.5-flash-preview-tts",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Preview TTS"
+        },
+        {
+          "id": "models/gemini-2.5-pro-preview-tts",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Pro Preview TTS"
+        },
+        {
+          "id": "models/gemma-4-26b-a4b-it",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemma 4 26B A4B IT"
+        },
+        {
+          "id": "models/gemma-4-31b-it",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemma 4 31B IT"
+        },
+        {
+          "id": "models/gemini-flash-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Flash Latest"
+        },
+        {
+          "id": "models/gemini-flash-lite-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Flash-Lite Latest"
+        },
+        {
+          "id": "models/gemini-pro-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Pro Latest"
+        },
+        {
+          "id": "models/gemini-2.5-flash-lite",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash-Lite"
+        },
+        {
+          "id": "models/gemini-2.5-flash-image",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana"
+        },
+        {
+          "id": "models/gemini-3-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3 Pro Preview"
+        },
+        {
+          "id": "models/gemini-3-flash-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3 Flash Preview"
+        },
+        {
+          "id": "models/gemini-3.1-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Pro Preview"
+        },
+        {
+          "id": "models/gemini-3.1-pro-preview-customtools",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Pro Preview Custom Tools"
+        },
+        {
+          "id": "models/gemini-3.1-flash-lite-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash Lite Preview"
+        },
+        {
+          "id": "models/gemini-3.1-flash-lite",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash Lite"
+        },
+        {
+          "id": "models/gemini-3-pro-image-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana Pro"
+        },
+        {
+          "id": "models/nano-banana-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana Pro"
+        },
+        {
+          "id": "models/gemini-3.1-flash-image-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Nano Banana 2"
+        },
+        {
+          "id": "models/gemini-3.5-flash",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.5 Flash"
+        },
+        {
+          "id": "models/lyria-3-clip-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Lyria 3 Clip Preview"
+        },
+        {
+          "id": "models/lyria-3-pro-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Lyria 3 Pro Preview"
+        },
+        {
+          "id": "models/gemini-3.1-flash-tts-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash TTS Preview"
+        },
+        {
+          "id": "models/gemini-robotics-er-1.5-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Robotics-ER 1.5 Preview"
+        },
+        {
+          "id": "models/gemini-robotics-er-1.6-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Robotics-ER 1.6 Preview"
+        },
+        {
+          "id": "models/gemini-2.5-computer-use-preview-10-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Computer Use Preview 10-2025"
+        },
+        {
+          "id": "models/antigravity-preview-05-2026",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Antigravity Agent Preview"
+        },
+        {
+          "id": "models/deep-research-max-preview-04-2026",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Deep Research Max Preview (Apr-21-2026)"
+        },
+        {
+          "id": "models/deep-research-preview-04-2026",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Deep Research Preview (Apr-21-2026)"
+        },
+        {
+          "id": "models/deep-research-pro-preview-12-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Deep Research Pro Preview (Dec-12-2025)"
+        },
+        {
+          "id": "models/gemini-embedding-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Embedding 001"
+        },
+        {
+          "id": "models/gemini-embedding-2-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Embedding 2 Preview"
+        },
+        {
+          "id": "models/gemini-embedding-2",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini Embedding 2"
+        },
+        {
+          "id": "models/aqa",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Model that performs Attributed Question Answering."
+        },
+        {
+          "id": "models/imagen-4.0-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Imagen 4"
+        },
+        {
+          "id": "models/imagen-4.0-ultra-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Imagen 4 Ultra"
+        },
+        {
+          "id": "models/imagen-4.0-fast-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Imagen 4 Fast"
+        },
+        {
+          "id": "models/veo-2.0-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 2"
+        },
+        {
+          "id": "models/veo-3.0-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3"
+        },
+        {
+          "id": "models/veo-3.0-fast-generate-001",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3 fast"
+        },
+        {
+          "id": "models/veo-3.1-generate-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3.1"
+        },
+        {
+          "id": "models/veo-3.1-fast-generate-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3.1 fast"
+        },
+        {
+          "id": "models/veo-3.1-lite-generate-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Veo 3.1 lite"
+        },
+        {
+          "id": "models/gemini-2.5-flash-native-audio-latest",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Native Audio Latest"
+        },
+        {
+          "id": "models/gemini-2.5-flash-native-audio-preview-09-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Native Audio Preview 09-2025"
+        },
+        {
+          "id": "models/gemini-2.5-flash-native-audio-preview-12-2025",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 2.5 Flash Native Audio Preview 12-2025"
+        },
+        {
+          "id": "models/gemini-3.1-flash-live-preview",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Gemini 3.1 Flash Live Preview"
+        },
+        {
+          "id": "models/lyria-realtime-exp",
+          "object": "model",
+          "owned_by": "google",
+          "display_name": "Lyria Realtime Experimental"
+        }
+      ]
+    }
+  },
+  {
+    "provider": "nexus-code",
+    "model": "poolside/laguna-m.1",
+    "baseUrl": "https://inference.poolside.ai/v1",
+    "status": "success",
+    "latency": 1214,
+    "details": {
+      "data": [
+        {
+          "id": "poolside/laguna-m.1",
+          "created": 1773321358,
+          "object": "model",
+          "owned_by": "poolside",
+          "name": "Poolside: Laguna M.1",
+          "description": "Poolside's most capable coding agent model",
+          "context_length": 131072,
+          "max_completion_tokens": 8192,
+          "quantization": "fp8",
+          "pricing": {
+            "prompt": "0",
+            "completion": "0",
+            "image": "0",
+            "request": "0"
+          },
+          "supported_sampling_parameters": [
+            "temperature"
+          ],
+          "supported_features": [
+            "tools",
+            "reasoning"
+          ],
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "poolside/laguna-xs.2",
+          "created": 1776776074,
+          "object": "model",
+          "owned_by": "poolside",
+          "name": "Poolside: Laguna XS.2",
+          "description": "Poolside's second-generation coding agent model in the XS size class",
+          "context_length": 131072,
+          "max_completion_tokens": 8192,
+          "quantization": "fp8",
+          "pricing": {
+            "prompt": "0",
+            "completion": "0",
+            "image": "0",
+            "request": "0"
+          },
+          "supported_sampling_parameters": [
+            "temperature"
+          ],
+          "supported_features": [
+            "tools",
+            "reasoning"
+          ],
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ],
+          "hugging_face_id": "poolside/Laguna-XS.2"
+        }
+      ]
+    },
+    "contextLimit": 131072
+  },
+  {
+    "provider": "nexus-core",
+    "model": "meta/llama-3.3-70b-instruct",
+    "baseUrl": "https://integrate.api.nvidia.com/v1",
+    "status": "success",
+    "latency": 124,
+    "details": {
+      "object": "list",
+      "data": [
+        {
+          "id": "01-ai/yi-large",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "01-ai"
+        },
+        {
+          "id": "abacusai/dracarys-llama-3.1-70b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "abacusai"
+        },
+        {
+          "id": "adept/fuyu-8b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "adept"
+        },
+        {
+          "id": "ai21labs/jamba-1.5-large-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "ai21labs"
+        },
+        {
+          "id": "aisingapore/sea-lion-7b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "aisingapore"
+        },
+        {
+          "id": "baai/bge-m3",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "baai"
+        },
+        {
+          "id": "bigcode/starcoder2-15b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "bigcode"
+        },
+        {
+          "id": "bytedance/seed-oss-36b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "bytedance"
+        },
+        {
+          "id": "databricks/dbrx-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "databricks"
+        },
+        {
+          "id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "deepseek-ai"
+        },
+        {
+          "id": "deepseek-ai/deepseek-v4-flash",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "deepseek-ai"
+        },
+        {
+          "id": "deepseek-ai/deepseek-v4-flash",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "deepseek-ai"
+        },
+        {
+          "id": "deepseek-ai/deepseek-v4-pro",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "deepseek-ai"
+        },
+        {
+          "id": "deepseek-ai/deepseek-v4-pro",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "deepseek-ai"
+        },
+        {
+          "id": "google/codegemma-1.1-7b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/codegemma-7b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/deplot",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-2-2b-it",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-2b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-3-12b-it",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-3-4b-it",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-3n-e2b-it",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-3n-e4b-it",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/gemma-4-31b-it",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "google/recurrentgemma-2b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "google"
+        },
+        {
+          "id": "ibm/granite-3.0-3b-a800m-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "ibm"
+        },
+        {
+          "id": "ibm/granite-3.0-8b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "ibm"
+        },
+        {
+          "id": "ibm/granite-34b-code-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "ibm"
+        },
+        {
+          "id": "ibm/granite-8b-code-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "ibm"
+        },
+        {
+          "id": "meta/codellama-70b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.1-70b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.1-8b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.2-11b-vision-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.2-1b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.2-3b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.2-90b-vision-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-3.3-70b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-4-maverick-17b-128e-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama-guard-4-12b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "meta/llama2-70b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "meta"
+        },
+        {
+          "id": "microsoft/kosmos-2",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "microsoft"
+        },
+        {
+          "id": "microsoft/phi-3-vision-128k-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "microsoft"
+        },
+        {
+          "id": "microsoft/phi-3.5-moe-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "microsoft"
+        },
+        {
+          "id": "microsoft/phi-4-mini-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "microsoft"
+        },
+        {
+          "id": "microsoft/phi-4-multimodal-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "microsoft"
+        },
+        {
+          "id": "minimaxai/minimax-m2.7",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "minimaxai"
+        },
+        {
+          "id": "mistralai/codestral-22b-instruct-v0.1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/ministral-14b-instruct-2512",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-7b-instruct-v0.3",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-large",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-large-2-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-large-3-675b-instruct-2512",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-medium-3.5-128b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-nemotron",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mistral-small-4-119b-2603",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mixtral-8x22b-instruct-v0.1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mixtral-8x22b-v0.1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "mistralai/mixtral-8x7b-instruct-v0.1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "mistralai"
+        },
+        {
+          "id": "moonshotai/kimi-k2.6",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "moonshotai"
+        },
+        {
+          "id": "nv-mistralai/mistral-nemo-12b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nv-mistralai"
+        },
+        {
+          "id": "nvidia/ai-synthetic-video-detector",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/cosmos-reason2-8b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/embed-qa-4",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/gliner-pii",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/ising-calibration-1-35b-a3b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemoguard-8b-topic-control",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemotron-51b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemotron-70b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemotron-nano-8b-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemotron-nano-vl-8b-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.2-nv-embedqa-1b-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-nemotron-embed-1b-v2",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/llama3-chatqa-1.5-70b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/mistral-nemo-minitron-8b-8k-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemoretriever-parse",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-3-content-safety",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-3-nano-30b-a3b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-3-super-120b-a12b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-3-super-120b-a12b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-4-340b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-4-340b-reward",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-content-safety-reasoning-4b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-mini-4b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-nano-12b-v2-vl",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-nano-3-30b-a3b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nemotron-parse",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/neva-22b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nv-embed-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nv-embedcode-7b-v1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nv-embedqa-e5-v5",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nv-embedqa-mistral-7b-v2",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nvclip",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/nvidia-nemotron-nano-9b-v2",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/riva-translate-4b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/riva-translate-4b-instruct-v1.1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "nvidia/vila",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "nvidia"
+        },
+        {
+          "id": "openai/gpt-oss-120b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "openai"
+        },
+        {
+          "id": "openai/gpt-oss-120b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "openai"
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "openai"
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "openai"
+        },
+        {
+          "id": "qwen/qwen3-coder-480b-a35b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "qwen"
+        },
+        {
+          "id": "qwen/qwen3-next-80b-a3b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "qwen"
+        },
+        {
+          "id": "qwen/qwen3-next-80b-a3b-thinking",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "qwen"
+        },
+        {
+          "id": "qwen/qwen3.5-122b-a10b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "qwen"
+        },
+        {
+          "id": "qwen/qwen3.5-397b-a17b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "qwen"
+        },
+        {
+          "id": "sarvamai/sarvam-m",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "sarvamai"
+        },
+        {
+          "id": "snowflake/arctic-embed-l",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "snowflake"
+        },
+        {
+          "id": "stepfun-ai/step-3.5-flash",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "stepfun-ai"
+        },
+        {
+          "id": "stockmark/stockmark-2-100b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "stockmark"
+        },
+        {
+          "id": "upstage/solar-10.7b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "upstage"
+        },
+        {
+          "id": "writer/palmyra-creative-122b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "writer"
+        },
+        {
+          "id": "writer/palmyra-fin-70b-32k",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "writer"
+        },
+        {
+          "id": "writer/palmyra-med-70b",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "writer"
+        },
+        {
+          "id": "writer/palmyra-med-70b-32k",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "writer"
+        },
+        {
+          "id": "z-ai/glm-5.1",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "z-ai"
+        },
+        {
+          "id": "zyphra/zamba2-7b-instruct",
+          "object": "model",
+          "created": 735790403,
+          "owned_by": "zyphra"
+        }
+      ]
+    }
+  },
+  {
+    "provider": "nexus-lite",
+    "model": "llama-3.1-8b-instant",
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "status": "success",
+    "latency": 86,
+    "details": {
+      "object": "list",
+      "data": [
+        {
+          "id": "groq/compound",
+          "object": "model",
+          "created": 1756949530,
+          "owned_by": "Groq",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 8192
+        },
+        {
+          "id": "llama-3.3-70b-versatile",
+          "object": "model",
+          "created": 1733447754,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 32768
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "object": "model",
+          "created": 1754407957,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 65536
+        },
+        {
+          "id": "openai/gpt-oss-120b",
+          "object": "model",
+          "created": 1754408224,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 65536
+        },
+        {
+          "id": "allam-2-7b",
+          "object": "model",
+          "created": 1737672203,
+          "owned_by": "SDAIA",
+          "active": true,
+          "context_window": 4096,
+          "public_apps": null,
+          "max_completion_tokens": 4096
+        },
+        {
+          "id": "meta-llama/llama-prompt-guard-2-22m",
+          "object": "model",
+          "created": 1748632101,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 512,
+          "public_apps": null,
+          "max_completion_tokens": 512
+        },
+        {
+          "id": "groq/compound-mini",
+          "object": "model",
+          "created": 1756949707,
+          "owned_by": "Groq",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 8192
+        },
+        {
+          "id": "canopylabs/orpheus-arabic-saudi",
+          "object": "model",
+          "created": 1765926439,
+          "owned_by": "Canopy Labs",
+          "active": true,
+          "context_window": 4000,
+          "public_apps": null,
+          "max_completion_tokens": 50000
+        },
+        {
+          "id": "qwen/qwen3-32b",
+          "object": "model",
+          "created": 1748396646,
+          "owned_by": "Alibaba Cloud",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 40960
+        },
+        {
+          "id": "llama-3.1-8b-instant",
+          "object": "model",
+          "created": 1693721698,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 131072
+        },
+        {
+          "id": "meta-llama/llama-4-scout-17b-16e-instruct",
+          "object": "model",
+          "created": 1743874824,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 8192
+        },
+        {
+          "id": "whisper-large-v3-turbo",
+          "object": "model",
+          "created": 1728413088,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 448,
+          "public_apps": null,
+          "max_completion_tokens": 448
+        },
+        {
+          "id": "canopylabs/orpheus-v1-english",
+          "object": "model",
+          "created": 1766186316,
+          "owned_by": "Canopy Labs",
+          "active": true,
+          "context_window": 4000,
+          "public_apps": null,
+          "max_completion_tokens": 50000
+        },
+        {
+          "id": "openai/gpt-oss-safeguard-20b",
+          "object": "model",
+          "created": 1761708789,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 131072,
+          "public_apps": null,
+          "max_completion_tokens": 65536
+        },
+        {
+          "id": "meta-llama/llama-prompt-guard-2-86m",
+          "object": "model",
+          "created": 1748632165,
+          "owned_by": "Meta",
+          "active": true,
+          "context_window": 512,
+          "public_apps": null,
+          "max_completion_tokens": 512
+        },
+        {
+          "id": "whisper-large-v3",
+          "object": "model",
+          "created": 1693721698,
+          "owned_by": "OpenAI",
+          "active": true,
+          "context_window": 448,
+          "public_apps": null,
+          "max_completion_tokens": 448
+        }
+      ]
+    }
+  }
+]

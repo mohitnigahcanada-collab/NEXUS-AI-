@@ -88,6 +88,40 @@ export const TIER_REASONING: Record<string, ProviderConfig> = {
     },
   },
 
+  "nexus-brain-max": {
+    name: "nexus-brain-max",
+    baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai",
+    model: "gemini-3.1-pro-preview",
+    keyEnv: "GEMINI_API_KEY",
+    tier: "reasoning",
+    priority: 4, // DEMOTED - API issues
+    category: "reasoning-best",
+    costPer1kTokens: 0.0,
+    contextLimit: 1048576, // 1M!
+    benchmarks: {
+      mmlu: 92,
+      sweBench: 32,
+      latency: 200,
+    },
+  },
+
+  "nexus-brain-pro": {
+    name: "nexus-brain-pro",
+    baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai",
+    model: "gemini-2.5-pro",
+    keyEnv: "GEMINI_API_KEY",
+    tier: "reasoning",
+    priority: 3,
+    category: "reasoning-proven",
+    costPer1kTokens: 0.00125,
+    contextLimit: 1048576,
+    benchmarks: {
+      mmlu: 90,
+      sweBench: 32,
+      latency: 95,
+    },
+  },
+
   "nexus-brain-alt": {
     name: "nexus-brain-alt",
     baseUrl: "https://api.siliconflow.com/v1",

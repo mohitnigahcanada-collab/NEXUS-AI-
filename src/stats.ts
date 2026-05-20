@@ -2,7 +2,8 @@
 
 import { recordRequest, queries, getSetting, setSetting } from "./db";
 import { events } from "./events";
-import { OPENAI_COST_PER_1K } from "./providers";
+
+const OPENAI_COST_PER_1K = 0.005; // For savings calculation
 
 interface RequestLog {
   model: string;

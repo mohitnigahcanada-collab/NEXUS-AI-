@@ -3,14 +3,22 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { handleChatCompletion } from "./gateway";
-import { getAllProviders, PROVIDERS } from "./providers";
+import { getAllProviders, ALL_PROVIDERS } from "./providers";
 import { stats } from "./stats";
 import { getCircuitStatus } from "./circuit-breaker";
 import { events, type NexusEvent } from "./events";
 import { createApiKey, listApiKeys, revokeApiKey, validateApiKey } from "./api-keys";
 import { runBenchmark, getLatestBenchmarks } from "./benchmark";
 import { getSetting, setSetting } from "./db";
-import dashboardHtml from "./dashboard/index.html";
+import { getAllVariants } from "./variants";
+import { healthMonitor } from "./health-monitor";
+// import { loadKeysFromKeyring } from "./keyring-loader";
+
+// Load API keys from GNOME Keyring (secure storage) - DISABLED for benchmarking
+// loadKeysFromKeyring().catch(console.error);
+
+// Start health monitoring system
+healthMonitor.start();
 
 const app = new Hono();
 const PORT = parseInt(process.env.NEXUS_PORT || "4000");
@@ -148,10 +156,35 @@ app.get("/api/models", (c) => {
   return c.json({ models });
 });
 
+// List available variants (fast, balance, pro, xmax, auto)
+app.get("/api/variants", (c) => {
+  const variants = getAllVariants();
+  const circuits = getCircuitStatus();
+  
+  const enrichedVariants = variants.map(v => {
+    let healthy = true;
+    let avgLatency: number | null = null;
+    
+    if (v.currentModel && v.currentModel !== "varies") {
+      const provider = ALL_PROVIDERS[v.currentModel];
+      healthy = circuits[v.currentModel]?.healthy ?? true;
+      avgLatency = provider?.benchmarks?.latency || null;
+    }
+    
+    return {
+      ...v,
+      healthy,
+      avgLatency,
+    };
+  });
+  
+  return c.json({ variants: enrichedVariants });
+});
+
 // Test a provider connection
 app.post("/api/models/:model/test", async (c) => {
   const model = c.req.param("model");
-  const provider = PROVIDERS[model];
+  const provider = ALL_PROVIDERS[model];
   if (!provider) return c.json({ error: "Model not found" }, 404);
 
   const key = process.env[provider.keyEnv];
@@ -231,7 +264,7 @@ app.put("/api/settings", async (c) => {
   }
   if (body.modelOverride !== undefined) {
     const modelOverride = String(body.modelOverride);
-    if (modelOverride !== "auto" && !PROVIDERS[modelOverride]) {
+    if (modelOverride !== "auto" && !ALL_PROVIDERS[modelOverride]) {
       return c.json({ error: "Invalid model override" }, 400);
     }
     setSetting("model_override", modelOverride);
@@ -239,13 +272,26 @@ app.put("/api/settings", async (c) => {
   return c.json({ ok: true });
 });
 
-// ─── Health (backward compat) ────────────────────────────────────
+// ─── Health & Monitoring ─────────────────────────────────────────
 
 app.get("/health", (c) => {
   const todayStats = stats.getTodayStats();
   const weekStats = stats.getWeekStats();
   const circuits = getCircuitStatus();
-  return c.json({ status: "ok", version: "1.0.0", today: todayStats, week: weekStats, providers: circuits });
+  const healthReport = healthMonitor.getHealthReport();
+  
+  return c.json({ 
+    status: healthReport.overallHealth === "healthy" ? "ok" : healthReport.overallHealth,
+    version: "2.0.0-bulletproof",
+    health: healthReport,
+    today: todayStats,
+    week: weekStats,
+    providers: circuits
+  });
+});
+
+app.get("/api/health/detailed", (c) => {
+  return c.json(healthMonitor.getHealthReport());
 });
 
 // ─── Info ────────────────────────────────────────────────────────
@@ -267,26 +313,33 @@ app.get("/v1", (c) => {
         settings: "GET /api/settings",
       },
     },
-    models: ["nexus-flash", "nexus-air", "nexus-deep", "nexus-pro", "nexus-code", "nexus-lite", "auto"],
+    models: Object.keys(ALL_PROVIDERS).concat(["auto"]),
   });
 });
 
 // ─── Start ───────────────────────────────────────────────────────
 
+const modelList = Object.entries(ALL_PROVIDERS)
+  .reduce((acc: any, [name, config]) => {
+    if (!acc[config.tier]) acc[config.tier] = [];
+    acc[config.tier].push(name);
+    return acc;
+  }, {});
+
 console.log(`
-╔═══════════════════ NEXUS AI v1.0.0 ═══════════════════╗
+╔═══════════════════ NEXUS AI v2.0.0 ═══════════════════╗
 ║                                                         ║
 ║  Gateway:   http://localhost:${PORT}/v1                  ║
 ║  Dashboard: http://localhost:${PORT}                     ║
 ║                                                         ║
-║  Models:                                                ║
-║    nexus-flash  → Ultra-fast responses                  ║
-║    nexus-air    → Balanced & efficient                  ║
-║    nexus-deep   → Deep thinking                         ║
-║    nexus-pro    → Premium reasoning                     ║
-║    nexus-code   → Code specialist                       ║
-║    nexus-lite   → Free tier                             ║
-║    auto         → Smart routing (recommended)           ║
+║  🎯 16 Models | 4 Tiers | 5 Providers                  ║
+║                                                         ║
+║  Complex Coding:  4 models (GPT-4o, Claude, DeepSeek)  ║
+║  Reasoning:       4 models (Gemini 3.1 Pro, 2.5 Pro)   ║
+║  Heavy Lifting:   4 models (DeepSeek, Llama 3.3-70B)   ║
+║  Simple Chat:     4 models (Llama 3.1-8B, Gemma 2-9B)  ║
+║                                                         ║
+║  Use "auto" for intelligent routing 🚀                 ║
 ║                                                         ║
 ╚═══════════════════════════════════════════════════════════╝
 `);
@@ -306,15 +359,13 @@ events.subscribe((event: NexusEvent) => {
   }
 });
 
+// ─── Watchdog removed - it was killing the service every 60s ────
+
 // ─── Bun.serve with WebSocket + Hono ─────────────────────────────
 
 const server = Bun.serve({
   port: PORT,
   hostname: "::",
-  routes: {
-    "/": dashboardHtml,
-    "/dashboard": dashboardHtml,
-  },
   fetch(req, server) {
     const url = new URL(req.url);
 
@@ -323,6 +374,23 @@ const server = Bun.serve({
       const upgraded = server.upgrade(req);
       if (upgraded) return undefined;
       return new Response("WebSocket upgrade failed", { status: 400 });
+    }
+
+    // Serve dashboard HTML at root (with bundling support)
+    if (url.pathname === "/" || url.pathname === "/dashboard") {
+      return new Response(Bun.file("./src/dashboard/index.html"), {
+        headers: { "Content-Type": "text/html" },
+      });
+    }
+
+    // Serve dashboard assets (JS, CSS, fonts, etc.)
+    if (url.pathname.startsWith("/dashboard/") || 
+        url.pathname.match(/\.(tsx?|jsx?|css)$/)) {
+      const filePath = url.pathname.startsWith("/dashboard/") 
+        ? `./src${url.pathname}`
+        : `./src/dashboard${url.pathname}`;
+      const file = Bun.file(filePath);
+      return new Response(file);
     }
 
     // All other routes handled by Hono
@@ -348,4 +416,46 @@ const server = Bun.serve({
       wsClients.delete(ws);
     },
   },
+  development: {
+    hmr: true,
+  },
+});
+
+// ─── Graceful Shutdown ───────────────────────────────────────────
+
+function shutdown(signal: string) {
+  console.log(`\n${signal} received. Shutting down gracefully...`);
+  
+  // Stop health monitoring
+  healthMonitor.stop();
+  
+  // Close all WebSocket connections
+  for (const ws of wsClients) {
+    try {
+      ws.close(1000, "Server shutting down");
+    } catch {}
+  }
+  wsClients.clear();
+  
+  // Give time for connections to close
+  setTimeout(() => {
+    console.log("Shutdown complete.");
+    process.exit(0);
+  }, 1000);
+}
+
+// Handle shutdown signals
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGABRT", () => shutdown("SIGABRT"));
+
+// Handle uncaught errors gracefully
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught exception:", err);
+  // Don't exit - log and continue
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled rejection at:", promise, "reason:", reason);
+  // Don't exit - log and continue
 });

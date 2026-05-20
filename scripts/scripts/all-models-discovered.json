@@ -1,0 +1,1273 @@
+[
+  {
+    "name": "GROQ",
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "totalModels": 16,
+    "models": [
+      {
+        "id": "canopylabs/orpheus-arabic-saudi",
+        "provider": "GROQ"
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-86m",
+        "provider": "GROQ"
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-22m",
+        "provider": "GROQ"
+      },
+      {
+        "id": "groq/compound",
+        "provider": "GROQ"
+      },
+      {
+        "id": "canopylabs/orpheus-v1-english",
+        "provider": "GROQ"
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "llama-3.3-70b-versatile",
+        "provider": "GROQ"
+      },
+      {
+        "id": "whisper-large-v3",
+        "provider": "GROQ"
+      },
+      {
+        "id": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "provider": "GROQ"
+      },
+      {
+        "id": "llama-3.1-8b-instant",
+        "provider": "GROQ"
+      },
+      {
+        "id": "openai/gpt-oss-safeguard-20b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "whisper-large-v3-turbo",
+        "provider": "GROQ"
+      },
+      {
+        "id": "allam-2-7b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "qwen/qwen3-32b",
+        "provider": "GROQ"
+      },
+      {
+        "id": "groq/compound-mini",
+        "provider": "GROQ"
+      }
+    ]
+  },
+  {
+    "name": "Gemini",
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+    "totalModels": 50,
+    "models": [
+      {
+        "id": "gemini-2.5-flash",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.5 Flash",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.5-pro",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.5 Pro",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.0-flash",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.0 Flash",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.0-flash-001",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.0 Flash 001",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.0-flash-lite-001",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.0 Flash-Lite 001",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.0-flash-lite",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.0 Flash-Lite",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.5-flash-preview-tts",
+        "provider": "Gemini",
+        "contextLength": 8192,
+        "description": "Gemini 2.5 Flash Preview TTS",
+        "capabilities": [
+          "countTokens",
+          "generateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.5-pro-preview-tts",
+        "provider": "Gemini",
+        "contextLength": 8192,
+        "description": "Gemini 2.5 Pro Preview TTS",
+        "capabilities": [
+          "countTokens",
+          "generateContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemma-4-26b-a4b-it",
+        "provider": "Gemini",
+        "contextLength": 262144,
+        "description": "Gemma 4 26B A4B IT",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "gemma-4-31b-it",
+        "provider": "Gemini",
+        "contextLength": 262144,
+        "description": "Gemma 4 31B IT",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "gemini-flash-latest",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini Flash Latest",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-flash-lite-latest",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini Flash-Lite Latest",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-pro-latest",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini Pro Latest",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.5-flash-lite",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 2.5 Flash-Lite",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.5-flash-image",
+        "provider": "Gemini",
+        "contextLength": 32768,
+        "description": "Nano Banana",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3-pro-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3 Pro Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3-flash-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3 Flash Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3.1-pro-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3.1 Pro Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3.1-pro-preview-customtools",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3.1 Pro Preview Custom Tools",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3.1-flash-lite-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3.1 Flash Lite Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3.1-flash-lite",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3.1 Flash Lite",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3-pro-image-preview",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Nano Banana Pro",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "nano-banana-pro-preview",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Nano Banana Pro",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3.1-flash-image-preview",
+        "provider": "Gemini",
+        "contextLength": 65536,
+        "description": "Nano Banana 2",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-3.5-flash",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini 3.5 Flash",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "lyria-3-clip-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Lyria 3 Clip Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "lyria-3-pro-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Lyria 3 Pro Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "gemini-3.1-flash-tts-preview",
+        "provider": "Gemini",
+        "contextLength": 8192,
+        "description": "Gemini 3.1 Flash TTS Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-robotics-er-1.5-preview",
+        "provider": "Gemini",
+        "contextLength": 1048576,
+        "description": "Gemini Robotics-ER 1.5 Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "gemini-robotics-er-1.6-preview",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Gemini Robotics-ER 1.6 Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ]
+      },
+      {
+        "id": "gemini-2.5-computer-use-preview-10-2025",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Gemini 2.5 Computer Use Preview 10-2025",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "antigravity-preview-05-2026",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Antigravity Agent Preview",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "deep-research-max-preview-04-2026",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Deep Research Max Preview (Apr-21-2026)",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "deep-research-preview-04-2026",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Deep Research Preview (Apr-21-2026)",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      },
+      {
+        "id": "deep-research-pro-preview-12-2025",
+        "provider": "Gemini",
+        "contextLength": 131072,
+        "description": "Deep Research Pro Preview (Dec-12-2025)",
+        "capabilities": [
+          "generateContent",
+          "countTokens"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SiliconFlow",
+    "baseUrl": "https://api.siliconflow.com/v1",
+    "totalModels": 67,
+    "models": [
+      {
+        "id": "deepseek-ai/DeepSeek-V4-Pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V4-Flash",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "moonshotai/Kimi-K2.6",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "tencent/Hy3-preview",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-5.1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.6-35B-A3B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.6-27B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-5V-Turbo",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-397B-A17B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-122B-A10B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-35B-A3B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-27B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3.5-9B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "MiniMaxAI/MiniMax-M2.5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "stepfun-ai/Step-3.5-Flash",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "moonshotai/Kimi-K2.5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "google/gemma-4-26B-A4B-it",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "google/gemma-4-31B-it",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-4.7",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.2",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.2-Exp",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.1-Terminus",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3.1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-V3",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "deepseek-ai/DeepSeek-R1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Tongyi-MAI/Z-Image-Turbo",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "nex-agi/DeepSeek-V3.1-Nex-N1",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.2-flex",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.2-pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-32B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-32B-Thinking",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-8B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-VL-30B-A3B-Thinking",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "zai-org/GLM-4.5-Air",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Wan-AI/Wan2.2-I2V-A14B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Wan-AI/Wan2.2-T2V-A14B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "inclusionAI/Ling-flash-2.0",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen-Image",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen-Image-Edit",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "ByteDance-Seed/Seed-OSS-36B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "tencent/Hunyuan-A13B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-32B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-14B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-8B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Reranker-8B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Embedding-8B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Embedding-4B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Reranker-0.6B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen3-Embedding-0.6B",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-Kontext-pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-Kontext-max",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX-1.1-pro-Ultra",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX-1.1-pro",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-Kontext-dev",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen2.5-72B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "IndexTeam/IndexTTS-2",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-schnell",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "black-forest-labs/FLUX.1-dev",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "fishaudio/fish-speech-1.5",
+        "provider": "SiliconFlow"
+      },
+      {
+        "id": "FunAudioLLM/CosyVoice2-0.5B",
+        "provider": "SiliconFlow"
+      }
+    ]
+  },
+  {
+    "name": "NVIDIA",
+    "baseUrl": "https://integrate.api.nvidia.com/v1",
+    "totalModels": 125,
+    "models": [
+      {
+        "id": "01-ai/yi-large",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "abacusai/dracarys-llama-3.1-70b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "adept/fuyu-8b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "ai21labs/jamba-1.5-large-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "aisingapore/sea-lion-7b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "baai/bge-m3",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "bigcode/starcoder2-15b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "bytedance/seed-oss-36b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "databricks/dbrx-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "deepseek-ai/deepseek-v4-flash",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "deepseek-ai/deepseek-v4-flash",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "deepseek-ai/deepseek-v4-pro",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "deepseek-ai/deepseek-v4-pro",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/codegemma-1.1-7b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/codegemma-7b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/deplot",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-2-2b-it",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-2b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-3-12b-it",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-3-4b-it",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-3n-e2b-it",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-3n-e4b-it",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/gemma-4-31b-it",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "google/recurrentgemma-2b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "ibm/granite-3.0-3b-a800m-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "ibm/granite-3.0-8b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "ibm/granite-34b-code-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "ibm/granite-8b-code-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/codellama-70b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.1-70b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.1-8b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.2-11b-vision-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.2-1b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.2-3b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.2-90b-vision-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-3.3-70b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-4-maverick-17b-128e-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama-guard-4-12b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "meta/llama2-70b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "microsoft/kosmos-2",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "microsoft/phi-3-vision-128k-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "microsoft/phi-3.5-moe-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "microsoft/phi-4-mini-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "microsoft/phi-4-multimodal-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "minimaxai/minimax-m2.7",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/codestral-22b-instruct-v0.1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/ministral-14b-instruct-2512",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-7b-instruct-v0.3",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-large",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-large-2-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-large-3-675b-instruct-2512",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-medium-3.5-128b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-nemotron",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mistral-small-4-119b-2603",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mixtral-8x22b-instruct-v0.1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mixtral-8x22b-v0.1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "mistralai/mixtral-8x7b-instruct-v0.1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "moonshotai/kimi-k2.6",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nv-mistralai/mistral-nemo-12b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/ai-synthetic-video-detector",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/cosmos-reason2-8b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/embed-qa-4",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/gliner-pii",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/ising-calibration-1-35b-a3b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemoguard-8b-topic-control",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemotron-51b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemotron-70b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemotron-nano-8b-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemotron-nano-vl-8b-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.2-nv-embedqa-1b-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-nemotron-embed-1b-v2",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/llama3-chatqa-1.5-70b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/mistral-nemo-minitron-8b-8k-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemoretriever-parse",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-3-content-safety",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-3-nano-30b-a3b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-3-super-120b-a12b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-3-super-120b-a12b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-4-340b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-4-340b-reward",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-content-safety-reasoning-4b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-mini-4b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-nano-12b-v2-vl",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-nano-3-30b-a3b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nemotron-parse",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/neva-22b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nv-embed-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nv-embedcode-7b-v1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nv-embedqa-e5-v5",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nv-embedqa-mistral-7b-v2",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nvclip",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/nvidia-nemotron-nano-9b-v2",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/riva-translate-4b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/riva-translate-4b-instruct-v1.1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "nvidia/vila",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "qwen/qwen3-coder-480b-a35b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "qwen/qwen3-next-80b-a3b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "qwen/qwen3-next-80b-a3b-thinking",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "qwen/qwen3.5-122b-a10b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "qwen/qwen3.5-397b-a17b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "sarvamai/sarvam-m",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "snowflake/arctic-embed-l",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "stepfun-ai/step-3.5-flash",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "stockmark/stockmark-2-100b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "upstage/solar-10.7b-instruct",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "writer/palmyra-creative-122b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "writer/palmyra-fin-70b-32k",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "writer/palmyra-med-70b",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "writer/palmyra-med-70b-32k",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "z-ai/glm-5.1",
+        "provider": "NVIDIA"
+      },
+      {
+        "id": "zyphra/zamba2-7b-instruct",
+        "provider": "NVIDIA"
+      }
+    ]
+  },
+  {
+    "name": "Poolside",
+    "baseUrl": "https://inference.poolside.ai/v1",
+    "totalModels": 2,
+    "models": [
+      {
+        "id": "poolside/laguna-m.1",
+        "provider": "Poolside",
+        "contextLength": 131072,
+        "description": "Poolside's most capable coding agent model"
+      },
+      {
+        "id": "poolside/laguna-xs.2",
+        "provider": "Poolside",
+        "contextLength": 131072,
+        "description": "Poolside's second-generation coding agent model in the XS size class"
+      }
+    ]
+  }
+]

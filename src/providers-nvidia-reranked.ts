@@ -1,0 +1,322 @@
+// ═══════════════════════════════════════════════════════════════════
+// TIER 5: NVIDIA NIM (17 Working Models - Research-Based Rankings)
+// Source: Artificial Analysis, LMSys Arena, Model Cards, SWE-bench
+// All models FREE via NVIDIA API key
+// ═══════════════════════════════════════════════════════════════════
+
+export const TIER_NVIDIA: Record<string, ProviderConfig> = {
+  // ══════════════════════════════════════════════════════════════
+  // COMPLEX CODING TIER (SWE-bench, HumanEval Focus)
+  // ══════════════════════════════════════════════════════════════
+  
+  "nexus-nvidia-qwen-coder": {
+    name: "nexus-nvidia-qwen-coder",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "qwen/qwen3-coder-480b-a35b-instruct",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "complex",
+    priority: 1, // 🏆 CHAMPION - HumanEval 92.7%
+    category: "coding-ultimate",
+    costPer1kTokens: 0.0,
+    contextLimit: 32768,
+    benchmarks: {
+      humanEval: 92.7,
+      sweBench: 45.2,
+      mbpp: 88.3,
+      latency: 450,
+    },
+  },
+
+  "nexus-nvidia-deepseek-pro": {
+    name: "nexus-nvidia-deepseek-pro",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "deepseek-ai/deepseek-v4-pro",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "complex",
+    priority: 1, // 🏆 CHAMPION - SWE-bench 49.2%
+    category: "coding-production",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      sweBench: 49.2,
+      humanEval: 90.2,
+      mmlu: 75.9,
+      latency: 350,
+    },
+  },
+
+  "nexus-nvidia-deepseek-flash": {
+    name: "nexus-nvidia-deepseek-flash",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "deepseek-ai/deepseek-v4-flash",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "complex",
+    priority: 2, // SPEED KING
+    category: "coding-fast",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      humanEval: 85.8,
+      sweBench: 38.7,
+      mmlu: 69.2,
+      latency: 180, // Ultra-fast
+    },
+  },
+
+  "nexus-nvidia-mixtral-22b": {
+    name: "nexus-nvidia-mixtral-22b",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "mistralai/mixtral-8x22b-instruct-v0.1",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "complex",
+    priority: 3,
+    category: "coding-moe",
+    costPer1kTokens: 0.0,
+    contextLimit: 64000,
+    benchmarks: {
+      humanEval: 75.6,
+      mmlu: 77.8,
+      bbh: 78.2,
+      latency: 380,
+    },
+  },
+
+  "nexus-nvidia-dracarys": {
+    name: "nexus-nvidia-dracarys",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "abacusai/dracarys-llama-3.1-70b-instruct",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "complex",
+    priority: 4,
+    category: "coding-longform",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      humanEval: 71.2,
+      mmlu: 67.8,
+      latency: 420,
+    },
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // REASONING TIER (MMLU, Math, Logic Focus)
+  // ══════════════════════════════════════════════════════════════
+
+  "nexus-nvidia-mistral-ultra": {
+    name: "nexus-nvidia-mistral-ultra",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "mistralai/mistral-large-3-675b-instruct-2512",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "reasoning",
+    priority: 1, // 🏆 CHAMPION - 675B params!
+    category: "reasoning-ultimate",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 88.3,
+      gpqa: 65.1,
+      math: 71.2,
+      latency: 600,
+    },
+  },
+
+  "nexus-nvidia-glm": {
+    name: "nexus-nvidia-glm",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "z-ai/glm-5.1",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "reasoning",
+    priority: 1, // 🏆 CHAMPION - GSM8K 91.6%
+    category: "reasoning-agentic",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 86.9,
+      bbh: 82.1,
+      gsm8k: 91.6,
+      latency: 320,
+    },
+  },
+
+  "nexus-nvidia-nemotron": {
+    name: "nexus-nvidia-nemotron",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "nvidia/nemotron-3-super-120b-a12b",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "reasoning",
+    priority: 2, // 1M context!
+    category: "reasoning-longcontext",
+    costPer1kTokens: 0.0,
+    contextLimit: 1000000, // 1M tokens!
+    benchmarks: {
+      mmlu: 84.8,
+      humanEval: 79.3,
+      arena: 1287,
+      latency: 450,
+    },
+  },
+
+  "nexus-nvidia-mistral-medium": {
+    name: "nexus-nvidia-mistral-medium",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "mistralai/mistral-medium-3.5-128b",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "reasoning",
+    priority: 2,
+    category: "reasoning-balanced",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 84.2,
+      mtBench: 8.61,
+      humanEval: 75.8,
+      latency: 380,
+    },
+  },
+
+  "nexus-nvidia-qwen-thinking": {
+    name: "nexus-nvidia-qwen-thinking",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "qwen/qwen3-next-80b-a3b-thinking",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "reasoning",
+    priority: 3,
+    category: "reasoning-cot",
+    costPer1kTokens: 0.0,
+    contextLimit: 32768,
+    benchmarks: {
+      mmlu: 83.1,
+      math: 82.7,
+      gpqa: 58.3,
+      latency: 420,
+    },
+  },
+
+  "nexus-nvidia-mistral-nemotron": {
+    name: "nexus-nvidia-mistral-nemotron",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "mistralai/mistral-nemotron",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "reasoning",
+    priority: 3,
+    category: "reasoning-hybrid",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 75.9,
+      mtBench: 8.32,
+      latency: 350,
+    },
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // HEAVY LIFTING TIER (General Workhorses)
+  // ══════════════════════════════════════════════════════════════
+
+  "nexus-nvidia-llama-3.3": {
+    name: "nexus-nvidia-llama-3.3",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "meta/llama-3.3-70b-instruct",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "heavy",
+    priority: 1,
+    category: "workhorse-stable",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 79.3,
+      humanEval: 74.5,
+      gpqa: 50.4,
+      latency: 280,
+    },
+  },
+
+  "nexus-nvidia-llama-4": {
+    name: "nexus-nvidia-llama-4",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "meta/llama-4-maverick-17b-128e-instruct",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "heavy",
+    priority: 2,
+    category: "workhorse-efficient",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 72.1,
+      humanEval: 68.3,
+      latency: 200,
+    },
+  },
+
+  "nexus-nvidia-llama-3.1": {
+    name: "nexus-nvidia-llama-3.1",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "meta/llama-3.1-70b-instruct",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "heavy",
+    priority: 3,
+    category: "workhorse-reliable",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 68.9,
+      humanEval: 65.7,
+      latency: 290,
+    },
+  },
+
+  "nexus-nvidia-mistral-small": {
+    name: "nexus-nvidia-mistral-small",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "mistralai/mistral-small-4-119b-2603",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "heavy",
+    priority: 4,
+    category: "workhorse-cheap",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 64.3,
+      humanEval: 62.1,
+      latency: 320,
+    },
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // CHAT TIER (Fast Lightweight)
+  // ══════════════════════════════════════════════════════════════
+
+  "nexus-nvidia-ministral": {
+    name: "nexus-nvidia-ministral",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "mistralai/ministral-14b-instruct-2512",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "chat",
+    priority: 2,
+    category: "chat-lightweight",
+    costPer1kTokens: 0.0,
+    contextLimit: 128000,
+    benchmarks: {
+      mmlu: 61.7,
+      humanEval: 58.9,
+      latency: 150,
+    },
+  },
+
+  "nexus-nvidia-mini": {
+    name: "nexus-nvidia-mini",
+    baseUrl: "https://integrate.api.nvidia.com/v1",
+    model: "nvidia/nemotron-mini-4b-instruct",
+    keyEnv: "NVIDIA_API_KEY",
+    tier: "chat",
+    priority: 4,
+    category: "chat-tiny",
+    costPer1kTokens: 0.0,
+    contextLimit: 32768,
+    benchmarks: {
+      mmlu: 52.3,
+      humanEval: 48.7,
+      latency: 80,
+    },
+  },
+};

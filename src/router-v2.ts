@@ -1,6 +1,6 @@
 // Nexus AI V2 - Intelligent Router with Task Detection & Context Escalation
 
-import { ALL_PROVIDERS, getProvidersByTier, type ProviderConfig } from "./providers";
+import { ALL_PROVIDERS, getProvidersByTier, type ProviderConfig } from "./providers-v2";
 
 // ═══════════════════════════════════════════════════════════════════
 // TASK DETECTION KEYWORDS
@@ -52,37 +52,16 @@ export interface TaskAnalysis {
   contextWarning?: string;
 }
 
-export function analyzeTask(messages: Array<{role: string; content: string | any[]}>): TaskAnalysis {
-  // Combine all user messages (handle both string and array content)
+export function analyzeTask(messages: Array<{role: string; content: string}>): TaskAnalysis {
+  // Combine all user messages
   const userContent = messages
     .filter(m => m.role === "user")
-    .map(m => {
-      if (typeof m.content === "string") {
-        return m.content.toLowerCase();
-      } else if (Array.isArray(m.content)) {
-        // Handle multimodal content (extract text parts)
-        return m.content
-          .filter(part => typeof part === "object" && part.type === "text")
-          .map(part => part.text?.toLowerCase() || "")
-          .join(" ");
-      }
-      return "";
-    })
+    .map(m => m.content.toLowerCase())
     .join(" ");
 
   // Count tokens (rough estimate: 1 token ≈ 4 chars)
   const estimatedTokens = messages
-    .map(m => {
-      if (typeof m.content === "string") {
-        return m.content.length / 4;
-      } else if (Array.isArray(m.content)) {
-        return m.content
-          .filter(part => typeof part === "object" && part.type === "text")
-          .map(part => part.text?.length || 0)
-          .reduce((a, b) => a + b, 0) / 4;
-      }
-      return 0;
-    })
+    .map(m => m.content.length / 4)
     .reduce((a, b) => a + b, 0);
 
   // Score each tier
@@ -145,18 +124,7 @@ export function evaluateContextEscalation(
   currentProvider: string
 ): ContextEscalation {
   const provider = ALL_PROVIDERS[currentProvider];
-  if (!provider) {
-    // Provider not found, use default
-    return {
-      currentLevel: "32k",
-      shouldEscalate: false,
-      suggestedProvider: "nexus-chat-instant",
-      reason: "Provider not found, using default",
-    };
-  }
-  
-  const contextLimit = provider.contextLimit;
-  const tier = provider.tier;
+  const contextLimit = provider?.contextLimit || 32000;
 
   // Calculate context usage percentage
   const usagePercent = (currentTokens / contextLimit) * 100;
@@ -174,7 +142,7 @@ export function evaluateContextEscalation(
   if (currentTokens < 60000) {
     // Need 64k+ model
     if (contextLimit < 64000) {
-      const escalated = findProviderWithContext(64000, tier);
+      const escalated = findProviderWithContext(64000, provider.tier);
       return {
         currentLevel: "64k",
         shouldEscalate: true,
@@ -193,7 +161,7 @@ export function evaluateContextEscalation(
   if (currentTokens < 120000) {
     // Need 128k+ model
     if (contextLimit < 128000) {
-      const escalated = findProviderWithContext(128000, tier);
+      const escalated = findProviderWithContext(128000, provider.tier);
       return {
         currentLevel: "128k",
         shouldEscalate: true,
@@ -212,7 +180,7 @@ export function evaluateContextEscalation(
   if (currentTokens < 180000) {
     // Need 200k+ model
     if (contextLimit < 200000) {
-      const escalated = findProviderWithContext(200000, tier);
+      const escalated = findProviderWithContext(200000, provider.tier);
       return {
         currentLevel: "200k",
         shouldEscalate: true,
@@ -232,7 +200,7 @@ export function evaluateContextEscalation(
 
   // Need 1M model
   if (contextLimit < 1000000) {
-    const escalated = findProviderWithContext(1000000, tier);
+    const escalated = findProviderWithContext(1000000, provider.tier);
     return {
       currentLevel: "1M",
       shouldEscalate: true,
@@ -301,10 +269,9 @@ export function smartRoute(
 
   // If escalation needed, use escalated provider
   if (escalation?.shouldEscalate) {
-    const escalatedProvider = ALL_PROVIDERS[escalation.suggestedProvider];
     return {
       provider: escalation.suggestedProvider,
-      tier: escalatedProvider?.tier || "chat",
+      tier: ALL_PROVIDERS[escalation.suggestedProvider].tier,
       reason: escalation.reason,
       fallbackChain: taskAnalysis.fallbackChain,
       contextWarning: escalation.warning || taskAnalysis.contextWarning,
@@ -362,10 +329,9 @@ export function handleFallback(
     };
   }
 
-  // Return next provider - safely access with optional chaining
-  const nextProvider = providers[failedIndex + 1];
+  // Return next provider
   return {
-    nextProvider: nextProvider?.name || null,
+    nextProvider: providers[failedIndex + 1].name,
     shouldRetry: true,
     maxRetriesReached: false,
   };
