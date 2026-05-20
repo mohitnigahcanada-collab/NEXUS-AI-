@@ -102,9 +102,15 @@ export function isProviderHealthy(providerName: string): boolean {
 /**
  * Record a failure with exponential backoff
  */
-export function recordFailure(providerName: string, error?: string): void {
+export function recordFailure(providerName: string, error?: string, isHealthCheck: boolean = false): void {
   const state = getCircuitState(providerName);
   const now = Date.now();
+
+  // ⚡ Don't count health check failures in circuit metrics
+  if (isHealthCheck) {
+    console.log(`[CircuitBreaker] Health check failed for ${providerName}: ${error} (not counting as failure)`);
+    return;
+  }
 
   state.failures++;
   state.consecutiveFailures++;

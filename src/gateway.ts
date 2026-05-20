@@ -125,38 +125,12 @@ async function callProviderWithRetry(
   const queue = getRateLimitQueue(providerName);
 
   const result = await retryWithBackoff(
-    async () => {
-      const start = Date.now();
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body: JSON.stringify(requestBody),
-        signal: AbortSignal.timeout(30000), // 30s timeout
-      });
-      const latency = Date.now() - start;
-
-      // Handle rate limits specially
-      if (response.status === 429) {
-        console.warn(`[Gateway] ${providerName} rate limited, enqueuing request`);
-        const error: any = new Error("Rate limited");
-        error.status = 429;
-        throw error;
-      }
-
-      // Throw on other errors
-      if (!response.ok) {
-        const error: any = new Error(`HTTP ${response.status}: ${response.statusText}`);
-        error.status = response.status;
-        throw error;
-      }
-
-      return { response, latency };
-    },
+    async () => { ... },
     {
-      maxRetries: 3,
-      baseDelayMs: 1000,
-      maxDelayMs: 8000,
-      timeoutMs: 30000,
+      maxRetries: 1, // ⚡ Reduced from 3 - faster fallback cycling
+      baseDelayMs: 500, // ⚡ Reduced from 1000ms
+      maxDelayMs: 4000, // ⚡ Reduced from 8000ms
+      timeoutMs: 15000, // ⚡ Reduced from 30000ms - faster timeout
       retryableStatuses: [408, 429, 500, 502, 503, 504],
     }
   );
@@ -308,7 +282,9 @@ export async function handleChatCompletion(body: ChatRequest): Promise<Response>
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
             "X-Nexus-Model": providerName,
-            "X-Nexus-Fallback-Level": String(attempts.indexOf({ providerName, provider, reason })),
+            "X-Nexus-Fallback-Level": String(attempts.findIndex(a => a.providerName === providerName)),
+            "X-Nexus-Retry-Count": String(errors.length),
+            "X-Nexus-Attempts": String(attempts.length),
           },
         });
       } else {
@@ -339,7 +315,9 @@ export async function handleChatCompletion(body: ChatRequest): Promise<Response>
           headers: {
             "Content-Type": "application/json",
             "X-Nexus-Model": providerName,
-            "X-Nexus-Fallback-Level": String(attempts.indexOf({ providerName, provider, reason })),
+            "X-Nexus-Fallback-Level": String(attempts.findIndex(a => a.providerName === providerName)),
+            "X-Nexus-Retry-Count": String(errors.length),
+            "X-Nexus-Attempts": String(attempts.length),
           },
         });
       }

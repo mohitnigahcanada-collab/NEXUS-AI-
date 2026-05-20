@@ -22,7 +22,7 @@ interface HealthReport {
 class HealthMonitor {
   private healthCache: Map<string, { healthy: boolean; lastCheck: number; latency?: number; error?: string }> = new Map();
   private checkInterval: Timer | null = null;
-  private HEALTH_CHECK_INTERVAL = 60 * 1000; // Check every 60 seconds
+  private HEALTH_CHECK_INTERVAL = 10 * 60 * 1000; // ⚡ Increased from 60s to 10 min - reduces CPU spam
   private DEGRADED_THRESHOLD = 0.7; // <70% healthy = degraded
   private CRITICAL_THRESHOLD = 0.5; // <50% healthy = critical
 
@@ -51,6 +51,16 @@ class HealthMonitor {
     console.log(`[HealthMonitor] Running health checks on ${providers.length} providers...`);
 
     const checks = providers.map(async (providerConfig) => {
+      // ⚡ Skip providers without API keys (don't count as failures)
+      if (!process.env[providerConfig.keyEnv]) {
+        this.healthCache.set(providerConfig.name, {
+          healthy: true, // Treat as healthy but not tested
+          lastCheck: Date.now(),
+          error: "No API key configured",
+        });
+        return { healthy: true, latency: 0, error: "No API key" };
+      }
+
       try {
         const result = await performHealthCheck(providerConfig.name, providerConfig);
         
