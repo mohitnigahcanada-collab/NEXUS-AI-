@@ -2,6 +2,8 @@
 
 <div align="center">
 
+![Nexus AI Hero Banner](images/nexus-hero.jpg)
+
 ## **Nexus AI**
 
 **The Bulletproof AI Gateway with 100% Uptime Guarantee**
@@ -220,6 +222,8 @@ flowchart TD
 ---
 
 ## 📊 Dashboard Features
+
+![Nexus AI Dashboard](images/dashboard.jpg)
 
 Access the live dashboard at `http://localhost:4000`:
 
